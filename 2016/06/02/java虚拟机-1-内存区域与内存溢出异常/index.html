@@ -84,18 +84,18 @@
 
 
 
-<meta name="description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区运行时常量池6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
+<meta name="description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
 newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JVM内存区域与内存溢出异常">
 <meta property="og:url" content="http://wangzhenhui1991.github.io/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/index.html">
 <meta property="og:site_name" content="王振辉">
-<meta property="og:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区运行时常量池6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
+<meta property="og:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
 newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
-<meta property="og:updated_time" content="2016-06-21T01:03:11.926Z">
+<meta property="og:updated_time" content="2016-07-06T06:29:29.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM内存区域与内存溢出异常">
-<meta name="twitter:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区运行时常量池6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
+<meta name="twitter:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
 newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
 
 
@@ -149,7 +149,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle"></p>
+  <p class="site-subtitle">Zak</p>
 </div>
 
 <div class="site-nav-toggle">
@@ -355,7 +355,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
       
 
       
-        <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h5 id="运行时常量池"><a href="#运行时常量池" class="headerlink" title="运行时常量池"></a>运行时常量池</h5><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
+        <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
 <h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
       
     </div>
@@ -462,7 +462,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -470,7 +470,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -528,7 +528,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-程序计数器"><span class="nav-number">1.2.</span> <span class="nav-text">1. 程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-java虚拟机栈"><span class="nav-number">1.3.</span> <span class="nav-text">2. java虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-本地方法栈"><span class="nav-number">1.4.</span> <span class="nav-text">3. 本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-java堆"><span class="nav-number">1.5.</span> <span class="nav-text">4. java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-方法区"><span class="nav-number">1.6.</span> <span class="nav-text">5. 方法区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行时常量池"><span class="nav-number">1.6.0.1.</span> <span class="nav-text">运行时常量池</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.7.</span> <span class="nav-text">6. 直接内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM-HotSpot-对象创建过程"><span class="nav-number">1.8.</span> <span class="nav-text">JVM(HotSpot)对象创建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new"><span class="nav-number">1.8.1.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init"><span class="nav-number">1.8.2.</span> <span class="nav-text">init</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对象的内存分布"><span class="nav-number">1.9.</span> <span class="nav-text">2. 对象的内存分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象头Header"><span class="nav-number">1.9.1.</span> <span class="nav-text">对象头Header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Mark-Word"><span class="nav-number">1.9.2.</span> <span class="nav-text">1. Mark Word</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-类型指针"><span class="nav-number">1.9.3.</span> <span class="nav-text">2. 类型指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例数据Instance-Data"><span class="nav-number">1.9.4.</span> <span class="nav-text">实例数据Instance Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐填充Padding"><span class="nav-number">1.9.5.</span> <span class="nav-text">对齐填充Padding</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对象的访问定位"><span class="nav-number">1.10.</span> <span class="nav-text">3. 对象的访问定位</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-程序计数器"><span class="nav-number">1.2.</span> <span class="nav-text">1. 程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-java虚拟机栈"><span class="nav-number">1.3.</span> <span class="nav-text">2. java虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-本地方法栈"><span class="nav-number">1.4.</span> <span class="nav-text">3. 本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-java堆"><span class="nav-number">1.5.</span> <span class="nav-text">4. java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-方法区"><span class="nav-number">1.6.</span> <span class="nav-text">5. 方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.7.</span> <span class="nav-text">6. 直接内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM-HotSpot-对象创建过程"><span class="nav-number">1.8.</span> <span class="nav-text">JVM(HotSpot)对象创建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new"><span class="nav-number">1.8.1.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init"><span class="nav-number">1.8.2.</span> <span class="nav-text">init</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对象的内存分布"><span class="nav-number">1.9.</span> <span class="nav-text">2. 对象的内存分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象头Header"><span class="nav-number">1.9.1.</span> <span class="nav-text">对象头Header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Mark-Word"><span class="nav-number">1.9.2.</span> <span class="nav-text">1. Mark Word</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-类型指针"><span class="nav-number">1.9.3.</span> <span class="nav-text">2. 类型指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例数据Instance-Data"><span class="nav-number">1.9.4.</span> <span class="nav-text">实例数据Instance Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐填充Padding"><span class="nav-number">1.9.5.</span> <span class="nav-text">对齐填充Padding</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对象的访问定位"><span class="nav-number">1.10.</span> <span class="nav-text">3. 对象的访问定位</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
