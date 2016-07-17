@@ -276,6 +276,144 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/17/java-HashMap工作原理/" itemprop="url">
+                  java-HashMap工作原理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/集合/" itemprop="url" rel="index">
+                    <span itemprop="name">集合</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/java-HashMap工作原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-HashMap工作原理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>[TOC]</p>
+<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">当我们执行下面的操作时：</span><br><span class="line">HashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">map.put(<span class="string">"语文"</span>, <span class="number">1</span>);</span><br><span class="line">map.put(<span class="string">"数学"</span>, <span class="number">2</span>);</span><br><span class="line">map.put(<span class="string">"英语"</span>, <span class="number">3</span>);</span><br><span class="line">map.put(<span class="string">"历史"</span>, <span class="number">4</span>);</span><br><span class="line">map.put(<span class="string">"政治"</span>, <span class="number">5</span>);</span><br><span class="line">map.put(<span class="string">"地理"</span>, <span class="number">6</span>);</span><br><span class="line">map.put(<span class="string">"生物"</span>, <span class="number">7</span>);</span><br><span class="line">map.put(<span class="string">"化学"</span>, <span class="number">8</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;String, Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行结果是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">政治: 5</span><br><span class="line">生物: 7</span><br><span class="line">历史: 4</span><br><span class="line">数学: 2</span><br><span class="line">化学: 8</span><br><span class="line">语文: 1</span><br><span class="line">英语: 3</span><br><span class="line">地理: 6</span><br></pre></td></tr></table></figure></p>
+<p>发生了什么呢？下面是一个大致的结构，希望我们对HashMap的结构有一个感性的认识：<br><img src="http://img.i.liebao.cn/assets/images/76fc8c3555425f3598edab25129270d6.png" alt=""></p>
+<p>####　HashMap官方描述的几个关键点：<br>1.基于Map接口实现：<br>2.允许null键/值：对比hashtable不能为null<br>3.非同步：对比hashtable是同步，线程之间可以共享hashtable<br>4.不保证有序(比如插入的顺序)、也不保证序不随时间变化<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/17/java-HashMap工作原理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/16/java-为什么Java不支持多重继承/" itemprop="url">
                   java-为什么java不支持多重继承？
                 </a>
@@ -1401,7 +1539,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1409,7 +1547,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
