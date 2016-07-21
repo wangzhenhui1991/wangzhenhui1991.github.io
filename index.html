@@ -276,6 +276,153 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/17/java-多线程/" itemprop="url">
+                  java-多线程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/java-多线程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-多线程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="概述-程序-进程-线程"><a href="#概述-程序-进程-线程" class="headerlink" title="概述 程序-进程-线程"></a>概述 程序-进程-线程</h2><p><strong>程序</strong> Program,是一个静态的概念<br><strong>进程</strong> Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担<br><strong>线程</strong> Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurrent)线程,一个进程中的线程共享相同的内存单元/内存地址空间可以访问相同的变量和对象，而且它们从同一堆中分配对象通信、数据交换、同步操作,由于线程间的通信是在同一地址空间上进行的，所以不需要额外的通信机制，这就使得通信更简便而且信息传递的速度也更快。<br><strong>可以从jvm的内存结构上来理解线程与进程的区别：</strong><br>jvm中每个线程拥有自己独立的栈空间stack，程序计数器counter，本地方法栈native等，<br>而整个进程即可以的内存空间则主要是指jvm中的堆空间和方法区。<br><img src="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/49138c7b6eec92d4711023c9543032ba.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/fc36040aae12743dbb04b02d07c9e49a.png" alt=""></p>
+<hr>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/17/java-多线程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/17/java-HashMap工作原理/" itemprop="url">
                   java-HashMap工作原理
                 </a>
@@ -772,138 +919,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
-                  JVM内存区域与内存溢出异常
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-02T15:57:51+08:00" content="2016-06-02">
-              2016-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
-                    <span itemprop="name">自动内存管理机制</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/06/02/栈和队列(1)/" itemprop="url">
                   栈和队列（一）
                 </a>
@@ -991,6 +1006,138 @@
 2. 设计的栈类型可以使用线程的栈结构
 </code></pre><p>难度：☆</p>
 
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
+                  JVM内存区域与内存溢出异常
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-02T15:57:51+08:00" content="2016-06-02">
+              2016-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
+                    <span itemprop="name">自动内存管理机制</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
+<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
           
         
       
@@ -1397,110 +1544,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2010/05/27/hexo-blog-1/" itemprop="url">
-                  万事开头难
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2010-05-27T12:18:14+08:00" content="2010-05-27">
-              2010-05-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2010/05/27/hexo-blog-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2010/05/27/hexo-blog-1/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>万事开头难！</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1539,7 +1589,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1547,7 +1597,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1556,7 +1606,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

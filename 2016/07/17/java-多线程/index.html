@@ -1,0 +1,881 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="概述 程序-进程-线程程序 Program,是一个静态的概念进程 Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担线程 Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java-多线程">
+<meta property="og:url" content="http://wangzhenhui1991.github.io/2016/07/17/java-多线程/index.html">
+<meta property="og:site_name" content="王振辉">
+<meta property="og:description" content="概述 程序-进程-线程程序 Program,是一个静态的概念进程 Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担线程 Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurr">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/49138c7b6eec92d4711023c9543032ba.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/fc36040aae12743dbb04b02d07c9e49a.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/c046d52574eaa44cd3761c89c9e92843.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/24538dfa02b022a660ad4d14d24c6d0d.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/c6d663542fdc6da2d9ee6f82ee4feb95.png">
+<meta property="og:updated_time" content="2016-07-19T07:56:04.761Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java-多线程">
+<meta name="twitter:description" content="概述 程序-进程-线程程序 Program,是一个静态的概念进程 Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担线程 Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurr">
+<meta name="twitter:image" content="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"right","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> java-多线程 | 王振辉 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">王振辉</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Zak</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                java-多线程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/java-多线程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-多线程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述-程序-进程-线程"><a href="#概述-程序-进程-线程" class="headerlink" title="概述 程序-进程-线程"></a>概述 程序-进程-线程</h2><p><strong>程序</strong> Program,是一个静态的概念<br><strong>进程</strong> Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担<br><strong>线程</strong> Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurrent)线程,一个进程中的线程共享相同的内存单元/内存地址空间可以访问相同的变量和对象，而且它们从同一堆中分配对象通信、数据交换、同步操作,由于线程间的通信是在同一地址空间上进行的，所以不需要额外的通信机制，这就使得通信更简便而且信息传递的速度也更快。<br><strong>可以从jvm的内存结构上来理解线程与进程的区别：</strong><br>jvm中每个线程拥有自己独立的栈空间stack，程序计数器counter，本地方法栈native等，<br>而整个进程即可以的内存空间则主要是指jvm中的堆空间和方法区。<br><img src="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/49138c7b6eec92d4711023c9543032ba.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/fc36040aae12743dbb04b02d07c9e49a.png" alt=""></p>
+<hr>
+<a id="more"></a>
+<h2 id="多线程有什么用"><a href="#多线程有什么用" class="headerlink" title="多线程有什么用"></a>多线程有什么用</h2><ul>
+<li><strong>发挥多核cpu的优势</strong><br>随着工业的进步，现在的笔记本、台式机乃至商用的应用服务器至少也都是双核的，4核、8核甚至16核的也都不少见，如果是单线程的程序，那么在双核CPU上就浪费了50%，在4核CPU上就浪费了75%。单核CPU上所谓的”多线程”那是假的多线程，同一时间处理器只会处理一段逻辑，只不过线程之间切换得比较快，看着像多个线程”同时”运行罢了。多核CPU上的多线程才是真正的多线程，它能让你的多段逻辑同时工作，多线程，可以真正发挥出多核CPU的优势来，达到充分利用CPU的目的。</li>
+<li><strong>防止阻塞</strong><br>从程序运行效率的角度来看，单核CPU不但不会发挥出多线程的优势，反而会因为在单核CPU上运行多线程导致线程上下文的切换，而降低程序整体的效率。但是单核CPU我们还是要应用多线程，就是为了防止阻塞。试想，如果单核CPU使用单线程，那么只要这个线程阻塞了，比方说远程读取某个数据吧，对端迟迟未返回又没有设置超时时间，那么你的整个程序在数据返回回来之前就停止运行了。多线程可以防止这个问题，多条线程同时运行，哪怕一条线程的代码执行读取数据阻塞，也不会影响其它任务的执行。</li>
+<li><strong>便于建模</strong><br>这是另外一个没有这么明显的优点了。假设有一个大的任务A，单线程编程，那么就要考虑很多，建立整个程序模型比较麻烦。但是如果把这个大的任务A分解成几个小任务，任务B、任务C、任务D，分别建立程序模型，并通过多线程分别运行这几个任务，那就简单很多了。</li>
+</ul>
+<hr>
+<h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><p><img src="http://img.i.liebao.cn/assets/images/c046d52574eaa44cd3761c89c9e92843.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/24538dfa02b022a660ad4d14d24c6d0d.png" alt=""><br><strong>新生状态：</strong><br>用new关键字和Thread类或其子类建立一个线程对象后，该线程对象就处于新生状态。处于新生状态的线程有自己的内存空间，通过调用start方法进入就绪状态（runnable）</p>
+<p><strong>就绪状态：</strong><br>处于就绪状态的线程已经具备了运行条件，但还没有分配到CPU，处于线程就绪队列，等待系统为其分配CPU。等待状态并不是执行状态，当系统选定一个等待执行的Thread对象后，它就会从等待执行状态进入执行状态，系统挑选的动作称之为“cpu调度”。一旦获得CPU，线程就进入运行状态并自动调用自己的run方法。</p>
+<p><strong>运行状态：</strong><br>在运行状态的线程执行自己的run方法中代码，直到调用其他方法而终止、或等待某资源而阻塞或完成任务而死亡。如果在给定的时间片内没有执行结束，就会被系统给换下来回到等待执行状态。</p>
+<p><strong>阻塞状态：</strong><br>处于运行状态的线程在某些情况下，如执行了sleep（睡眠）方法，或等待I/O设备，或是为了等待获取锁资源，将让出CPU并暂时停止自己的运行，进入阻塞状态。 在阻塞状态的线程不能进入就绪队列。只有当引起阻塞的原因消除时，如睡眠时间已到，或等待的I/O设备空闲下来，获取到锁资源，线程便转入就绪状态，重新到就绪队列中排队等待，被系统选中后从原来停止的位置开始继续运行。</p>
+<p><strong>死亡状态：</strong><br>死亡状态是线程生命周期中的最后一个阶段。线程死亡的原因有两个。一个是正常运行的线程完成了它的全部工作；另一个是线程被强制性地终止，如通过执行stop或destroy方法来终止一个线程[不推荐使用这两个方法。前者会产生异常，后者是强制终止，不会释放锁。</p>
+<p><img src="http://img.i.liebao.cn/assets/images/c6d663542fdc6da2d9ee6f82ee4feb95.png" alt=""></p>
+<hr>
+<h2 id="同步与死锁"><a href="#同步与死锁" class="headerlink" title="同步与死锁"></a>同步与死锁</h2><h5 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h5><p>由于同一进程的多个线程共享同一片存储空间，在带来方便的同时，也带来了访问冲突这个严重的问题。Java语言提供了专门的<strong>锁机制</strong>以解决这种冲突，有效避免了同一个数据对象被多个线程同时访问。</p>
+<ul>
+<li>对于 <strong>数据对象</strong> ：我们可以通过<strong>private</strong>关键字来保证只能被方法访问。</li>
+<li>对于   <strong>方法</strong>  ：我们则通过<strong>synchronized</strong>关键字来保证方法的原子性。</li>
+</ul>
+<p>关于锁机制更详细的介绍，详见 <a href="http://www.importnew.com/19472.html" target="_blank" rel="external">java中的锁</a>,<a href="http://www.importnew.com/20444.html" target="_blank" rel="external">Java对象锁和类锁全面解析（多线程synchronized关键字）</a></p>
+<h5 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h5><p>所谓死锁，是指多个进程循环等待它方占有的资源而无限期地僵持下去的局面。如果没有外力的作用，那麽死锁涉及到的各个进程都将永远处于封锁状态。</p>
+<h6 id="死锁的原因："><a href="#死锁的原因：" class="headerlink" title="死锁的原因："></a>死锁的原因：</h6><p>计算机系统产生死锁的根本原因就是<strong>1.资源有限</strong>且<strong>2.操作不当</strong>：</p>
+<ul>
+<li>1.一种原因是系统提供的资源太少了，远不能满足并发进程对资源的需求。这种竞争资源引起的死锁是我们要讨论的核心。例如：消息是一种临时性资源。某一时刻，进程A等待进程B发来的消息，进程B等待进程C发来的消息，而进程C又等待进程A发来的消息。消息未到，A，B，C三个进程均无法向前推进，也会发生进程通信上的死锁。</li>
+<li>2.另一种原因是由于进程推进顺序不合适引发的死锁。资源少也未必一定产生死锁。就如同两个人过独木桥，如果两个人都要先过，在独木桥上僵持不肯后退，必然会应竞争资源产生死锁；但是，如果两个人上桥前先看一看有无对方的人在桥上，当无对方的人在桥上时自己才上桥，那麽问题就解决了。所以，如果程序设计得不合理，造成进程推进的顺序不当，也会出现死锁。</li>
+</ul>
+<h6 id="死锁的恢复："><a href="#死锁的恢复：" class="headerlink" title="死锁的恢复："></a>死锁的恢复：</h6><p>一旦在死锁检测时发现了死锁，就要消除死锁，使系统从死锁状态中恢复过来。</p>
+<ul>
+<li>1.最简单，最常用的方法就是进行系统的重新启动，不过这种方法代价很大，它意味着在这之前所有的进程已经完成的计算工作都将付之东流，包括参与死锁的那些进程，以及未参与死锁的进程。</li>
+<li>2.撤消进程，剥夺资源。终止参与死锁的进程，收回它们占有的资源，从而解除死锁。这时又分两种情况：一次性撤消参与死锁的全部进程，剥夺全部资源；或者逐步撤消参与死锁的进程，逐步收回死锁进程占有的资源。一般来说，选择逐步撤消的进程时要按照一定的原则进行，目的是撤消那些代价最小的进程，比如按进程的优先级确定进程的代价；考虑进程运行时的代价和与此进程相关的外部作业的代价等因素。</li>
+<li>3.此外，还有进程回退策略，即让参与死锁的进程回退到没有发生死锁前某一点处，并由此点处继续执行，以求再次执行时不再发生死锁。虽然这是个较理想的办法，但是操作起来系统开销极大，要有堆栈这样的机构记录进程的每一步变化，以便今后的回退，有时这是无法做到的。</li>
+</ul>
+<hr>
+<h2 id="Java中线程的实现"><a href="#Java中线程的实现" class="headerlink" title="Java中线程的实现"></a>Java中线程的实现</h2><h5 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h5><p>java提供了Thread类和Runnable接口两种方式来实现多线程，因为实现接口的方式比继承类的方式更灵活，也能减少程序之间的耦合度，面向接口编程也是设计模式6大原则的核心，所以更推荐 使用Runnable接口。</p>
+<ul>
+<li><strong>继承Thread类</strong><ul>
+<li>可以通过创建 Thread 的实例来创建新的线程。</li>
+<li>每个线程都是通过某个特定Thread对象所对应的方法run( )来完成其操作的，方法run( )称为线程体。</li>
+<li>通过调用Thead类的start()方法来启动一个线程。</li>
+<li>继承Thread类方式的缺点：那就是如果我们的类已经从一个类继承（如小程序必须继承自 Applet 类），则无法再继承 Thread 类</li>
+</ul>
+</li>
+<li><strong>实现Runnable接口</strong><br>  可以同时实现继承。实现Runnable接口方式要通用一些。<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestThread2</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">                   Thread thread1 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> TestThread2());</span><br><span class="line">				   Thread thread2 = <span class="keyword">new</span> Thread(<span class="keyword">new</span> TestThread2());</span><br><span class="line">				   t1.setPriority(<span class="number">1</span>);<span class="comment">//设置优先级</span></span><br><span class="line">                   t2.setPriority(<span class="number">10</span>);</span><br><span class="line">				   thread1.start();<span class="comment">//启动线程</span></span><br><span class="line">                   thread2.start();</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="comment">//实现具体的run()方法</span></span><br><span class="line">         <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">              <span class="keyword">for</span>(inti=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)&#123;</span><br><span class="line">                            System.out.println(<span class="keyword">this</span>.threadId+<span class="string">":"</span>+i);</span><br><span class="line">                   &#125;</span><br><span class="line">         &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h5 id="线程调度器"><a href="#线程调度器" class="headerlink" title="线程调度器"></a>线程调度器</h5><p>Java提供一个线程调度器来监控程序中启动后进入就绪状态的所有线程。线程调度器按照线程的优先级决定应调度哪个线程来执行。线程的优先级用数字表示，范围从1到10，默认是5。</p>
+<blockquote>
+<p><strong>注意：优先级低只是意味着获得调度的概率低,并不是绝对先调用优先级高后调用优先级低的线程</strong>(那不意味着失去了多线程的意义了)。</p>
+</blockquote>
+<p>使用下述线方法获得或设置线程对象的优先级。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getPriority</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">setPriority</span><span class="params">(<span class="keyword">int</span> newPriority)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="仍待整理"><a href="#仍待整理" class="headerlink" title="仍待整理"></a>仍待整理</h2><p><a href="http://www.importnew.com/18459.html" target="_blank" rel="external">java多线程40个问题</a><br><a href="http://www.importnew.com/12773.html" target="_blank" rel="external"></a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/17/java-HashMap工作原理/" rel="next" title="java-HashMap工作原理">
+                <i class="fa fa-chevron-left"></i> java-HashMap工作原理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/17/java-多线程/"
+           data-title="java-多线程" data-url="http://wangzhenhui1991.github.io/2016/07/17/java-多线程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="王振辉" />
+          <p class="site-author-name" itemprop="name">王振辉</p>
+          <p class="site-description motion-element" itemprop="description">coder|dotaer|lazer</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wangzhenhui1991" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/5687288435/home?wvr=5" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述-程序-进程-线程"><span class="nav-number">1.</span> <span class="nav-text">概述 程序-进程-线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程有什么用"><span class="nav-number">2.</span> <span class="nav-text">多线程有什么用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程状态"><span class="nav-number">3.</span> <span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同步与死锁"><span class="nav-number">4.</span> <span class="nav-text">同步与死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#同步"><span class="nav-number">4.0.0.1.</span> <span class="nav-text">同步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#死锁"><span class="nav-number">4.0.0.2.</span> <span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#死锁的原因："><span class="nav-number">4.0.0.2.1.</span> <span class="nav-text">死锁的原因：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#死锁的恢复："><span class="nav-number">4.0.0.2.2.</span> <span class="nav-text">死锁的恢复：</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java中线程的实现"><span class="nav-number">5.</span> <span class="nav-text">Java中线程的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实现"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#线程调度器"><span class="nav-number">5.0.0.2.</span> <span class="nav-text">线程调度器</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#仍待整理"><span class="nav-number">6.</span> <span class="nav-text">仍待整理</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2014 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">王振辉</span>
+</div>
+<!-- 
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+-->
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"wangzhenhui1991"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>
