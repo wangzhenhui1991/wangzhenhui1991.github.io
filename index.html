@@ -276,8 +276,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/17/java-多线程/" itemprop="url">
-                  java-多线程
+                <a class="post-title-link" href="/2016/08/16/网络协议/" itemprop="url">
+                  网络协议
                 </a>
               
             
@@ -290,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
-              2016-07-17
+            <time itemprop="dateCreated" datetime="2016-08-16T15:04:51+08:00" content="2016-08-16">
+              2016-08-16
             </time>
           </span>
 
@@ -304,32 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/并发/" itemprop="url" rel="index">
-                    <span itemprop="name">并发</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/并发/多线程/" itemprop="url" rel="index">
-                    <span itemprop="name">多线程</span>
+                  <a href="/categories/网络基础/" itemprop="url" rel="index">
+                    <span itemprop="name">网络基础</span>
                   </a>
                 </span>
 
@@ -344,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/17/java-多线程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-多线程/" itemprop="commentsCount"></span>
+                <a href="/2016/08/16/网络协议/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/16/网络协议/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -369,144 +345,72 @@
 
       
         
-          <h2 id="概述-程序-进程-线程"><a href="#概述-程序-进程-线程" class="headerlink" title="概述 程序-进程-线程"></a>概述 程序-进程-线程</h2><p><strong>程序</strong> Program,是一个静态的概念<br><strong>进程</strong> Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担<br><strong>线程</strong> Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurrent)线程,一个进程中的线程共享相同的内存单元/内存地址空间可以访问相同的变量和对象，而且它们从同一堆中分配对象通信、数据交换、同步操作,由于线程间的通信是在同一地址空间上进行的，所以不需要额外的通信机制，这就使得通信更简便而且信息传递的速度也更快。<br><strong>可以从jvm的内存结构上来理解线程与进程的区别：</strong><br>jvm中每个线程拥有自己独立的栈空间stack，程序计数器counter，本地方法栈native等，<br>而整个进程即可以的内存空间则主要是指jvm中的堆空间和方法区。<br><img src="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/49138c7b6eec92d4711023c9543032ba.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/fc36040aae12743dbb04b02d07c9e49a.png" alt=""></p>
+          
+            <p>基于国际标准化组织（ISO，International Standards Orgnization）的提案，计算机网络的模型应该是七层，也就是我们通常所说的<strong>七层协议（即OSI参考模型），即物理层，数据链路层，网络层，传输层，会话层，表示层和应用层</strong>。<br>但是由于七层协议在实际实现起来比较复杂等等太多的原因，虽然是标准但是最终还是被三层协议所替代，也就是我们通常所说的TCP/IP参考模型，即：网络层，传输层和应用层。</p>
+<h2 id="物理层："><a href="#物理层：" class="headerlink" title="物理层："></a>物理层：</h2><p>物理层关注在一条通道上传输原始比特。设计问题必须确保当一方发送了比特1时，另一方收到的也是比特1，而不是比特0。这里的典型问题包括用什么电子信号来表示1和0、一个比特持续多少秒、传输是否可以在两个方向上同时进行、初始连接如何建立、当双方结束后如何撤销连接、网络连接器有多少针对以及每一针的用途是什么等。这些设计问题主要涉及机械、电子和时序接口，以及物理层之下的物理传输介质等。</p>
+<p>该层定义了了比特作为信号在通道上发送时相关的电气、时序和其他接口。物理层是构建网路的基础。物理信道的不同特征决定了其传输性能的不同（比如，吞吐量、延迟和误码率），</p>
+<h2 id="数据链路层："><a href="#数据链路层：" class="headerlink" title="数据链路层："></a>数据链路层：</h2><p><strong>什么是数据链路层?</strong><br>数据链路层是计算机网络的中的低层（OSI模型中的第二层），可简单的理解为是数据通道。主要作用是为上层（网络层）提供带有差错检测（后面会提）的不可靠传输服务。<br><strong>数据链路和链路有什么区别?</strong><br>链路是从一个结点到相邻结点的一段物理线路，而中间没有其他的交换结点。说白了，链路就相当于传输数据的载体。<br>数据链路=链路+控制数据的通信协议的软/硬件<br><strong>数据链路层要解决的问题有哪些？</strong><br>数据链路层总共要解决三个大问题：<strong>封装成帧、透明传输、差错检测</strong></p>
+<ol>
+<li><p><strong>封装成帧：</strong>即把上层网络层传下来的数据分别添加首部和尾部，这样就构成了一个帧。<img src="http://img.blog.csdn.net/20131018135011593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+</li>
+<li><p><strong>透明传输：</strong>什么叫透明传输？就是，不管你传什么数据，链路层都能给你传。实际存在的数据链路层对数据来说好像不存在一样。这就是透明传输。<br>那为了让所有的数据都能通过数据链路层传输，我们该做什么呢？帧的数据部分都是要传输的内容，帧首部和帧尾部用来告诉接收方帧是否传完。那如果数据部分恰好含有帧的首部或者尾部怎么办？假设数据部分含有帧尾部的特殊字符，接收方就会认为这个帧传输结束了。这样就做不到透明传输了。<br>解决方法：转义字符。<br>封装成帧的时候用转义字符把和【帧首部、尾部、以及转义字符】一样的字符转义成其他字符，传输到接收方的时候再转义回去。比如：帧尾部为7E，转义字符为7D，数据部分封装成帧的过程中，遇到7E，即转变成         （7D，5E）,用（7D，5E）来代替7E。接收方接收以后再把（7D，5E）恢复成7E<br>这种方法称为 字节填充或字符填充，还有一种方法称为零比特填充（即遇到5个连续的1，就立刻插入1个0，到接收方又把多添0删除）。</p>
+</li>
+<li><p><strong>差错检测：</strong>传输过程中，可能会发生0变1,1变0的情况，差错检测就是为了避免这种情况，检测到有问题的比特流，直接丢弃。<br>差错检测的方法叫做 循环冗余检测CRC，本质就是用传输的二进制码除以一个发送方和接收方商议好的二进制数。然后双方检验啥的……这个不复杂，请google【循环冗余检测CRC】学习，很简单。<br>PS：我们要特别注意的是【差错检测】只是检测的的【比特差错】，不能保证不丢帧，帧不重复，不乱序这样的错误。所以，就像前面说的，数据链路层只是不可靠的传输。</p>
+</li>
+</ol>
 <hr>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/17/java-多线程/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/17/hadoop-2-big data tech/" itemprop="url">
-                  如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
-              2016-07-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/17/hadoop-2-big data tech/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-2-big data tech/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
-<p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
-<p>存的下数据之后，你就开始考虑怎么处理数据。<br>虽然HDFS可以为你整体管理不同机器上的数据，但是这些数据太大了。一台机器读取成T上P的数据（很大的数据哦，比如整个东京热有史以来所有高清电影的大小甚至更大），一台机器慢慢跑也许需要好几天甚至好几周。对于很多公司来说，单机处理是不可忍受的，比如微博要更新24小时热博，它必须在24小时之内跑完这些处理。那么我如果要用很多台机器处理，我就面临了如何分配工作，如果一台机器挂了如何重新启动相应的任务，<strong>机器之间如何互相通信交换数据以完成复杂的计算等等。这就是MapReduce / Tez / Spark的功能。</strong>MapReduce是第一代计算引擎，Tez和Spark是第二代。MapReduce的设计，采用了很简化的计算模型，只有Map和Reduce两个计算过程（中间用Shuffle串联），用这个模型，已经可以处理大数据领域很大一部分问题了。<br>那什么是Map什么是Reduce？<br>考虑如果你要统计一个巨大的文本文件存储在类似HDFS上，你想要知道这个文本里各个词的出现频率。你启动了一个MapReduce程序。Map阶段，几百台机器同时读取这个文件的各个部分，分别把各自读到的部分分别统计出词频，产生类似<br>（hello, 12100次），（world，15214次）等等这样的Pair（我这里把Map和Combine放在一起说以便简化）；这几百台机器各自都产生了如上的集合，然后又有几百台机器启动Reduce处理。Reducer机器A将从Mapper机器收到所有以A开头的统计结果，机器B将收到B开头的词汇统计结果（当然实际上不会真的以字母开头做依据，而是用函数产生Hash值以避免数据串化。因为类似X开头的词肯定比其他要少得多，而你不希望数据处理各个机器的工作量相差悬殊）。然后这些Reducer将再次汇总，（hello，12100）＋（hello，12311）＋（hello，345881）= （hello，370292）。每个Reducer都如上处理，你就得到了整个文件的词频结果。<br>这看似是个很简单的模型，但很多算法都可以用这个模型描述了。<br>Map＋Reduce的简单模型很黄很暴力，虽然好用，但是很笨重。第二代的Tez和Spark除了内存Cache之类的新feature，本质上来说，是让Map/Reduce模型更通用，让Map和Reduce之间的界限更模糊，数据交换更灵活，更少的磁盘读写，以便更方便地描述复杂算法，取得更高的吞吐量。</p>
-<p>有了MapReduce，Tez和Spark之后，程序员发现，MapReduce的程序写起来真麻烦。他们希望简化这个过程。这就好比你有了汇编语言，虽然你几乎什么都能干了，但是你还是觉得繁琐。你希望有个更高层更抽象的语言层来描述算法和数据处理流程。于是就有了Pig和Hive。Pig是接近脚本方式去描述MapReduce，Hive则用的是SQL。它们把脚本和SQL语言翻译成MapReduce程序，丢给计算引擎去计算，而你就从繁琐的MapReduce程序中解脱出来，用更简单更直观的语言去写程序了。</p>
-<p>有了Hive之后，人们发现SQL对比Java有巨大的优势。一个是它太容易写了。刚才词频的东西，用SQL描述就只有一两行，MapReduce写起来大约要几十上百行。而更重要的是，非计算机背景的用户终于感受到了爱：我也会写SQL！于是数据分析人员终于从乞求工程师帮忙的窘境解脱出来，工程师也从写奇怪的一次性的处理程序中解脱出来。大家都开心了。Hive逐渐成长成了大数据仓库的核心组件。甚至很多公司的流水线作业集完全是用SQL描述，因为易写易改，一看就懂，容易维护。</p>
-<p>自从数据分析人员开始用Hive分析数据之后，它们发现，Hive在MapReduce上跑，真鸡巴慢！流水线作业集也许没啥关系，比如24小时更新的推荐，反正24小时内跑完就算了。但是数据分析，人们总是希望能跑更快一些。比如我希望看过去一个小时内多少人在充气娃娃页面驻足，分别停留了多久，对于一个巨型网站海量数据下，这个处理过程也许要花几十分钟甚至很多小时。而这个分析也许只是你万里长征的第一步，你还要看多少人浏览了跳蛋多少人看了拉赫曼尼诺夫的CD，以便跟老板汇报，我们的用户是猥琐男闷骚女更多还是文艺青年／少女更多。你无法忍受等待的折磨，只能跟帅帅的工程师蝈蝈说，快，快，再快一点！<br>于是Impala，Presto，Drill诞生了（当然还有无数非著名的交互SQL引擎，就不一一列举了）。三个系统的核心理念是，MapReduce引擎太慢，因为它太通用，太强壮，太保守，我们SQL需要更轻量，更激进地获取资源，更专门地对SQL做优化，而且不需要那么多容错性保证（因为系统出错了大不了重新启动任务，如果整个处理时间更短的话，比如几分钟之内）。这些系统让用户更快速地处理SQL任务，牺牲了通用性稳定性等特性。如果说MapReduce是大砍刀，砍啥都不怕，那上面三个就是剔骨刀，灵巧锋利，但是不能搞太大太硬的东西。</p>
-<p>这些系统，说实话，一直没有达到人们期望的流行度。因为这时候又两个异类被造出来了。他们是Hive on Tez / Spark和SparkSQL。它们的设计理念是，MapReduce慢，但是如果我用新一代通用计算引擎Tez或者Spark来跑SQL，那我就能跑的更快。而且用户不需要维护两套系统。这就好比如果你厨房小，人又懒，对吃的精细程度要求有限，那你可以买个电饭煲，能蒸能煲能烧，省了好多厨具。</p>
-<p>上面的介绍，基本就是一个数据仓库的构架了。底层HDFS，上面跑MapReduce／Tez／Spark，在上面跑Hive，Pig。或者HDFS上直接跑Impala，Drill，Presto。这解决了中低速数据处理的要求。</p>
-<p>那如果我要更高速的处理呢？<br>如果我是一个类似微博的公司，我希望显示不是24小时热博，我想看一个不断变化的热播榜，更新延迟在一分钟之内，上面的手段都将无法胜任。于是又一种计算模型被开发出来，这就是Streaming（流）计算。Storm是最流行的流计算平台。流计算的思路是，如果要达到更实时的更新，我何不在数据流进来的时候就处理了？比如还是词频统计的例子，我的数据流是一个一个的词，我就让他们一边流过我就一边开始统计了。流计算很牛逼，基本无延迟，但是它的短处是，不灵活，你想要统计的东西必须预先知道，毕竟数据流过就没了，你没算的东西就无法补算了。因此它是个很好的东西，但是无法替代上面数据仓库和批处理系统。</p>
-<p>还有一个有些独立的模块是KV Store，比如Cassandra，HBase，MongoDB以及很多很多很多很多其他的（多到无法想象）。所以KV Store就是说，我有一堆键值，我能很快速滴获取与这个Key绑定的数据。比如我用身份证号，能取到你的身份数据。这个动作用MapReduce也能完成，但是很可能要扫描整个数据集。而KV Store专用来处理这个操作，所有存和取都专门为此优化了。从几个P的数据中查找一个身份证号，也许只要零点几秒。这让大数据公司的一些专门操作被大大优化了。比如我网页上有个根据订单号查找订单内容的页面，而整个网站的订单数量无法单机数据库存储，我就会考虑用KV Store来存。KV Store的理念是，基本无法处理复杂的计算，大多没法JOIN，也许没法聚合，没有强一致性保证（不同数据分布在不同机器上，你每次读取也许会读到不同的结果，也无法处理类似银行转账那样的强一致性要求的操作）。但是丫就是快。极快。<br>每个不同的KV Store设计都有不同取舍，有些更快，有些容量更高，有些可以支持更复杂的操作。必有一款适合你。</p>
-<p>除此之外，还有一些更特制的系统／组件，比如Mahout是分布式机器学习库，Protobuf是数据交换的编码和库，ZooKeeper是高一致性的分布存取协同系统，等等。</p>
-<p>有了这么多乱七八糟的工具，都在同一个集群上运转，大家需要互相尊重有序工作。所以另外一个重要组件是，调度系统。现在最流行的是Yarn。你可以把他看作中央管理，好比你妈在厨房监工，哎，你妹妹切菜切完了，你可以把刀拿去杀鸡了。只要大家都服从你妈分配，那大家都能愉快滴烧菜。</p>
-<p>你可以认为，大数据生态圈就是一个厨房工具生态圈。为了做不同的菜，中国菜，日本菜，法国菜，你需要各种不同的工具。而且客人的需求正在复杂化，你的厨具不断被发明，也没有一个万用的厨具可以处理所有情况，因此它会变的越来越复杂。</p>
-<p>作者：Xiaoyu Ma<br>链接：<a href="http://www.zhihu.com/question/27974418/answer/38965760" target="_blank" rel="external">http://www.zhihu.com/question/27974418/answer/38965760</a><br>来源：知乎<br>著作权归作者所有，转载请联系作者获得授权。</p>
+<p>数据链路层使用的信道主要有两种类型:1.点对点信道 2.广播信道</p>
+<h3 id="点对点信道ppp"><a href="#点对点信道ppp" class="headerlink" title="点对点信道ppp"></a><strong>点对点信道ppp</strong></h3><p>以前吧，通信质量太差，我们用的可靠传输【高级数据链路控制HDLC协议】（这个是OSI模型的协议）。现在科学技术发达了，通信质量好了，然后我们都用上了更快，更简单PPP协议。具体就是这样，下面我们开始来学习什么是PPP协议。</p>
+<p><strong>PPP协议</strong>是用在数据链路层的一种协议，<strong>用户计算机</strong>和<strong>服务器提供商ISP</strong>进行通信的所用的协议。(比如你们宽带连接的时候不是会提示什么PPPOE连接么，其实就是这个PPP+后面要说的以太网。)</p>
+<p>PPP总共三部分组成：</p>
+<ol>
+<li>将网络层（IP）数据报封装成帧的方法</li>
+<li>链路控制协议LCP：主要用来配置一些用户和ISP建立连接的协定</li>
+<li>网络控制协议NCP：网络层协议有好多，所以NCP用来支持各种不同的上层（即网络层）协议。</li>
+</ol>
+<p><strong>PPP协议的帧格式：</strong><br><img src="http://img.blog.csdn.net/20131018144909375?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<ul>
+<li>F代表标志字段（其实就是帧开始和结束），在PPP协议中定义为0x7E。</li>
+<li>A为标志字段，C为控制字段，但是A和C没啥用，很多时候PPP协议中都把他两省去了。</li>
+<li>FCS是前面提到的CRC检验法的留下的帧检验序列FCS。</li>
+<li>协议用不同的二进制码代表 PPP协议中不同的协议，如0xC021代表链路控制协议LCP。</li>
+</ul>
+<p><strong>PPP协议的工作流程:</strong></p>
+<ol>
+<li>当用户拨号接入ISP时，路由器的调制解调器对拨号做出确认，并建立一条物理连接。</li>
+<li>PC机向路由器发送一系列的 LCP 分组（封装成多个 PPP 帧）。</li>
+<li>这些分组及其响应选择一些 PPP 参数，和进行网络层配置，NCP 给新接入的 PC机分配一个临时的 IP 地址，使 PC 机成为因特网上的一个主机。</li>
+<li>通信完毕时，NCP 释放网络层连接，收回原来分配出去的 IP 地址。接着，LCP 释放数据链路层连接。最后释放的是物理层的连接。</li>
+</ol>
+<hr>
+<h3 id="广播信道"><a href="#广播信道" class="headerlink" title="广播信道"></a><strong>广播信道</strong></h3><p>以太网就是现在用的最广泛的局域网，共有两个标准。一个是 DIX Ethernet V2，另一个是IEEE 802.3。<br>IEEE 802.3把局域网的链路层拆为两个子层，<br><del>1.逻辑链路控制LLC</del><br><strong>2.媒体接入控制MAC</strong>。<br>由于各种原因，LLC已经基本不用了。所以我们着重介绍<strong>MAC</strong></p>
+<p>讲MAC之前，我们需要先了解一下 适配器<br><strong> 适配器</strong><br>适配器又叫网卡。<br>网++卡最大的功能是缓冲数据再发送，避免了网络数据率和总线数据率不同而可能引起的问题。每个适配器里都有一个独一无二的，固定的物理地址，这个物理地址就是我们所说的MAC地址。++</p>
+<blockquote>
+<p>所谓广播就是集线器给局域网内的各个站点发送出此数据帧后，只有适配器的MAC地址与数据帧中的目的地址匹配的那个站才接收数据，其他的站就丢掉帧。</p>
+</blockquote>
+<p><strong>MAC</strong><br>MAC地址就是物理地址，固化在适配器（网卡）的ROM中，是48位的全球地址，每一个网卡的MAC地址都是全球唯一的。<br>MAC帧格式：<br><img src="http://img.blog.csdn.net/20131021084624750?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
+<ul>
+<li>目的地址即目标的mac地址</li>
+<li>源地址 即本机mac地址</li>
+<li>类型是标志上一层使用什么协议，比如0x0800代表上层使用的是IP数据报。</li>
+<li>数据的长度在46-1500字节之间。</li>
+<li>前8字节的作用是，当一个站刚刚接收到MAC帧的时候，由于适配器时钟尚未与叨叨的比特流同步，前面的几位MAC帧可能接收不到，由硬件生成。<br>这8位的前7位叫做前同步码，没啥用，就是为了让接收方调整时钟频率的，8位的最后一位，叫帧开始定界符，就说，定义为10101011，就说，当遇到最后两个11的时候，就是在告诉接收方，MAC帧马上就来了，做好接收准备。</li>
+<li>FCS是前面提到的CRC检验法的留下的帧检验序列FCS。</li>
+</ul>
+<p><strong> CSMA/CD协议</strong></p>
+<p>以太网采用的协议CSMA/CD协议。 CSMA/CD的意思的载波监听多点接入/碰撞检测 （这里的载波不是指那种传输数据的载波，只是借用一个这个词）</p>
+<blockquote>
+<p><strong>多点接入</strong>：就是说网络是总线型的（星形网也是总线型的一种）。CSMA/CD是双向交替通信（半双工通信）<br><strong>载波监听</strong>：不管发送前，还是发送中，每个站必须不停的检测信道。<br><strong>碰撞检测</strong>：当两个或以上的站发传送的数据同时在总线上时，总线上的电压变化幅度就会变大，容易造成传输中的数据损坏。</p>
+</blockquote>
+<p><strong>检测过程</strong>：<br>    发送前检测，是为了获得发送权，如果检测出信道中有数据，就不能发送。发送中检测，是为了及时发现有没有和其他的数据碰撞，也就是碰撞检测。</p>
+<p><img src="http://img.blog.csdn.net/20131019175848187?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>    <strong>争用期</strong>：如图从A到B点发送一帧来回的时间2T为争用期，只有当完整的度过了争用期没有检测到碰撞，那么我们认为这次发送成功了！</p>
+<p>一旦检测到碰撞，则站点立刻终止发送数据，这样的话，数据就没有帧尾部。数据就不完整，接收方收到数据以后就会发现数据部完整，就把他丢弃了。为了防止数据过短，在检测到碰撞时数据已经发送完，造成接收端收到错误的数据，所以，<strong>我们规定最短的帧长度为64字节（不满64的加入填充字节）</strong>，即512bit。与争用期相同。所以我们就可以说<strong>凡是长度小于64字节的帧都是由于碰撞而异常中止的无效帧</strong>。<br>    那么碰撞中断之后需要重传问题，以太网采用<strong>退避算法</strong>来决定帧的重传。<br>    <strong>退避算法</strong>：从离散的整数集合【0，1，…，（2k-1）】中随机取出一个数，记为r，重传推后时间是r倍的争用期。  k=Min【重传次数，10】。重传次数超过10次就取10，超过16次就把帧丢掉并报告给高层（TCP层）。<br>例如：<br>第一次重传，k=1，r就从（0，1）里面选，因此重传推迟时间就为0或者2τ。</p>
+<p>如果还碰撞，    第二次重传，k=2，r就从（0，1，2，3）选。重传推迟时间就为（0，2τ，4τ，6τ）中的其中之一。</p>
+<blockquote>
+<p><strong>强化碰撞：</strong>发生碰撞以后，除了立即停止发送数据，发送端再发送32bit或者48bit的人为干扰信号。目的是让局域网中所有用户都知道发生了碰撞。</p>
+</blockquote>
+<p>最后一点是，以太网规定了 <strong>帧间最小间隔为9.6μs</strong>。</p>
+<hr>
 
           
         
@@ -556,7 +460,7 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/17/hadoop-0-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="url">
+                <a class="post-title-link" href="/2016/07/17/hadoop-0-big data tech/" itemprop="url">
                   big data tech
                 </a>
               
@@ -600,8 +504,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/17/hadoop-0-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-0-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="commentsCount"></span>
+                <a href="/2016/07/17/hadoop-0-big data tech/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-0-big data tech/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -625,42 +529,17 @@
 
       
         
-          
-            <h2 id="大数据通用处理平台"><a href="#大数据通用处理平台" class="headerlink" title="大数据通用处理平台"></a>大数据通用处理平台</h2><p>Spark<br>Flink<br>Hadoop</p>
+          <h2 id="大数据通用处理平台"><a href="#大数据通用处理平台" class="headerlink" title="大数据通用处理平台"></a>大数据通用处理平台</h2><p>Spark<br>Flink<br>Hadoop</p>
 <p>##　分布式存储</p>
 <p>HDFS</p>
 <h2 id="资源调度"><a href="#资源调度" class="headerlink" title="资源调度"></a>资源调度</h2><p>Yarn<br>Mesos</p>
 <h2 id="数据分析-数据仓库-SQL类"><a href="#数据分析-数据仓库-SQL类" class="headerlink" title="数据分析/数据仓库(SQL类)"></a>数据分析/数据仓库(SQL类)</h2><p>Pig<br>Hive<br>kylin<br>Spark SQL,<br>Spark DataFrame<br>Impala<br>Phoenix</p>
-<h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><p>ElasticSearch<br>Logstash<br>Kibana</p>
-<h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><p>Kafka(纯日志类，大吞吐量)<br>RocketMQ<br>ZeroMQ<br>ActiveMQ<br>RabbitMQ</p>
-<h2 id="流式计算"><a href="#流式计算" class="headerlink" title="流式计算"></a>流式计算</h2><p>Storm/JStorm<br>Spark Streaming<br>Flink</p>
-<h2 id="日志收集"><a href="#日志收集" class="headerlink" title="日志收集"></a>日志收集</h2><p>Scribe</p>
-<p>Flume</p>
-<h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2><p>Java<br>Python<br>R<br>Ruby<br>Scala</p>
-<h2 id="数据分析挖掘"><a href="#数据分析挖掘" class="headerlink" title="数据分析挖掘"></a>数据分析挖掘</h2><p>MATLAB</p>
-<p>SPSS</p>
-<p>SAS</p>
-<h2 id="数据可视化"><a href="#数据可视化" class="headerlink" title="数据可视化"></a>数据可视化</h2><p>R<br>D3.js<br>ECharts<br>Excle<br>Python</p>
-<p>##机器学习</p>
-<h3 id="机器学习工具"><a href="#机器学习工具" class="headerlink" title="机器学习工具"></a>机器学习工具</h3><p>Mahout</p>
-<p>Spark Mlib<br>TensorFlow (Google 系)<br>Amazon Machine Learning<br>DMTK (微软分布式机器学习工具)</p>
-<h3 id="机器学习基础"><a href="#机器学习基础" class="headerlink" title="机器学习基础"></a>机器学习基础</h3><p>聚类<br>时间序列<br>推荐系统<br>回归分析<br>文本挖掘<br>决策树<br>支持向量机<br>贝叶斯分类<br>神经网络</p>
-<h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><p>一致性</p>
-<p>paxos<br>raft<br>gossip<br>数据结构</p>
-<p>栈，队列，链表<br>散列表<br>二叉树，红黑树，B树<br>图<br>常用算法<br>1.排序</p>
-<p>插入排序</p>
-<p>桶排序</p>
-<p>堆排序</p>
-<p>2.快速排序</p>
-<p>3,最大子数组</p>
-<p>4.最长公共子序列</p>
-<p>5.最小生成树</p>
-<p>最短路径</p>
-<p>6.矩阵的存储和运算</p>
-<h2 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h2><p>云服务</p>
-<p>SaaS<br>PaaS<br>IaaS<br>Openstack<br>Docker</p>
-
-          
+<h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><p>ElasticSearch<br>Logstash<br>Kibana<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/17/hadoop-0-big data tech/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -796,6 +675,277 @@
 <p>####　HashMap官方描述的几个关键点：<br>1.基于Map接口实现：<br>2.允许null键/值：对比hashtable不能为null<br>3.非同步：对比hashtable是同步，线程之间可以共享hashtable<br>4.不保证有序(比如插入的顺序)、也不保证序不随时间变化<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/17/java-HashMap工作原理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="url">
+                  如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
+<p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
+<p>存的下数据之后，你就开始考虑怎么处理数据。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/17/java-多线程/" itemprop="url">
+                  java-多线程
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/java-多线程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-多线程/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="概述-程序-进程-线程"><a href="#概述-程序-进程-线程" class="headerlink" title="概述 程序-进程-线程"></a>概述 程序-进程-线程</h2><p><strong>程序</strong> Program,是一个静态的概念<br><strong>进程</strong> Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担<br><strong>线程</strong> Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurrent)线程,一个进程中的线程共享相同的内存单元/内存地址空间可以访问相同的变量和对象，而且它们从同一堆中分配对象通信、数据交换、同步操作,由于线程间的通信是在同一地址空间上进行的，所以不需要额外的通信机制，这就使得通信更简便而且信息传递的速度也更快。<br><strong>可以从jvm的内存结构上来理解线程与进程的区别：</strong><br>jvm中每个线程拥有自己独立的栈空间stack，程序计数器counter，本地方法栈native等，<br>而整个进程即可以的内存空间则主要是指jvm中的堆空间和方法区。<br><img src="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/49138c7b6eec92d4711023c9543032ba.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/fc36040aae12743dbb04b02d07c9e49a.png" alt=""></p>
+<hr>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/17/java-多线程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1101,8 +1251,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
-                  JVM内存区域与内存溢出异常
+                <a class="post-title-link" href="/2016/06/02/fcm算法/" itemprop="url">
+                  fcm算法
                 </a>
               
             
@@ -1121,44 +1271,13 @@
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
-                    <span itemprop="name">自动内存管理机制</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
+                <a href="/2016/06/02/fcm算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/fcm算法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1183,8 +1302,10 @@
       
         
           
-            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
+            <p>FCM算法</p>
+<p>1.FCM概述</p>
+<p>PCM</p>
+
           
         
       
@@ -1368,8 +1489,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/fcm算法/" itemprop="url">
-                  fcm算法
+                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
+                  JVM内存区域与内存溢出异常
                 </a>
               
             
@@ -1388,109 +1509,6 @@
           </span>
 
           
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/02/fcm算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/fcm算法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>FCM算法</p>
-<p>1.FCM概述</p>
-<p>PCM</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/30/利用githooks自动进行部署/" itemprop="url">
-                  利用githooks自动进行部署
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-30T20:10:57+08:00" content="2016-05-30">
-              2016-05-30
-            </time>
-          </span>
-
-          
             <span class="post-category" >
               &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
@@ -1499,8 +1517,20 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/博客/" itemprop="url" rel="index">
-                    <span itemprop="name">博客</span>
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
+                    <span itemprop="name">自动内存管理机制</span>
                   </a>
                 </span>
 
@@ -1515,8 +1545,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/30/利用githooks自动进行部署/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/利用githooks自动进行部署/" itemprop="commentsCount"></span>
+                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1540,20 +1570,10 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>自从利用hexo在github的gitpages上搭建了博客之后，又将wangzhenhui1991.github.io同步clone到自己的服务器下/var/www/html上，这样就可以直接从自己的域名下访问了。</p>
-<blockquote>
-<p>问题是，我在自己平时用的电脑上发布到github上之后，服务器每次都要自己手动去git pull 远程github上的更新，很麻烦。</p>
-</blockquote>
-<p>所以想怎么能让服务器自动获取到github上的push 更新，然后服务器自动pull最新更新。(因为服务器可以完全服从github上的更新，所以直接pull就可以，不需要fetch后在checkout。)</p>
-<h2 id="解决方案-Webhooks"><a href="#解决方案-Webhooks" class="headerlink" title="解决方案-Webhooks"></a>解决方案-Webhooks</h2><p>github为这个问题提供了很强大的解决方案–<code>Webhooks</code></p>
-<blockquote>
-<p>Webhook，也就是人们常说的钩子，是一个很有用的工具。你可以通过定制 Webhook 来监测你在 Github.com 上的各种事件，最常见的莫过于 push 事件。如果你设置了一个监测 push 事件的 Webhook，那么每当你的这个项目有了任何提交，这个 Webhook 都会被触发，这时 Github 就会发送一个 HTTP POST 请求到你配置好的地址。<br>如此一来，你就可以通过这种方式去自动完成一些重复性工作。</p>
-</blockquote>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/30/利用githooks自动进行部署/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+          
+            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
+<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
+          
         
       
     </div>
@@ -1625,7 +1645,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1633,7 +1653,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1642,7 +1662,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
