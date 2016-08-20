@@ -345,74 +345,12 @@
 
       
         
-          
-            <p>基于国际标准化组织（ISO，International Standards Orgnization）的提案，计算机网络的模型应该是七层，也就是我们通常所说的<strong>七层协议（即OSI参考模型），即物理层，数据链路层，网络层，传输层，会话层，表示层和应用层</strong>。<br>但是由于七层协议在实际实现起来比较复杂等等太多的原因，虽然是标准但是最终还是被三层协议所替代，也就是我们通常所说的TCP/IP参考模型，即：网络层，传输层和应用层。</p>
-<h2 id="物理层："><a href="#物理层：" class="headerlink" title="物理层："></a>物理层：</h2><p>物理层关注在一条通道上传输原始比特。设计问题必须确保当一方发送了比特1时，另一方收到的也是比特1，而不是比特0。这里的典型问题包括用什么电子信号来表示1和0、一个比特持续多少秒、传输是否可以在两个方向上同时进行、初始连接如何建立、当双方结束后如何撤销连接、网络连接器有多少针对以及每一针的用途是什么等。这些设计问题主要涉及机械、电子和时序接口，以及物理层之下的物理传输介质等。</p>
-<p>该层定义了了比特作为信号在通道上发送时相关的电气、时序和其他接口。物理层是构建网路的基础。物理信道的不同特征决定了其传输性能的不同（比如，吞吐量、延迟和误码率），</p>
-<h2 id="数据链路层："><a href="#数据链路层：" class="headerlink" title="数据链路层："></a>数据链路层：</h2><p><strong>什么是数据链路层?</strong><br>数据链路层是计算机网络的中的低层（OSI模型中的第二层），可简单的理解为是数据通道。主要作用是为上层（网络层）提供带有差错检测（后面会提）的不可靠传输服务。<br><strong>数据链路和链路有什么区别?</strong><br>链路是从一个结点到相邻结点的一段物理线路，而中间没有其他的交换结点。说白了，链路就相当于传输数据的载体。<br>数据链路=链路+控制数据的通信协议的软/硬件<br><strong>数据链路层要解决的问题有哪些？</strong><br>数据链路层总共要解决三个大问题：<strong>封装成帧、透明传输、差错检测</strong></p>
-<ol>
-<li><p><strong>封装成帧：</strong>即把上层网络层传下来的数据分别添加首部和尾部，这样就构成了一个帧。<img src="http://img.blog.csdn.net/20131018135011593?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-</li>
-<li><p><strong>透明传输：</strong>什么叫透明传输？就是，不管你传什么数据，链路层都能给你传。实际存在的数据链路层对数据来说好像不存在一样。这就是透明传输。<br>那为了让所有的数据都能通过数据链路层传输，我们该做什么呢？帧的数据部分都是要传输的内容，帧首部和帧尾部用来告诉接收方帧是否传完。那如果数据部分恰好含有帧的首部或者尾部怎么办？假设数据部分含有帧尾部的特殊字符，接收方就会认为这个帧传输结束了。这样就做不到透明传输了。<br>解决方法：转义字符。<br>封装成帧的时候用转义字符把和【帧首部、尾部、以及转义字符】一样的字符转义成其他字符，传输到接收方的时候再转义回去。比如：帧尾部为7E，转义字符为7D，数据部分封装成帧的过程中，遇到7E，即转变成         （7D，5E）,用（7D，5E）来代替7E。接收方接收以后再把（7D，5E）恢复成7E<br>这种方法称为 字节填充或字符填充，还有一种方法称为零比特填充（即遇到5个连续的1，就立刻插入1个0，到接收方又把多添0删除）。</p>
-</li>
-<li><p><strong>差错检测：</strong>传输过程中，可能会发生0变1,1变0的情况，差错检测就是为了避免这种情况，检测到有问题的比特流，直接丢弃。<br>差错检测的方法叫做 循环冗余检测CRC，本质就是用传输的二进制码除以一个发送方和接收方商议好的二进制数。然后双方检验啥的……这个不复杂，请google【循环冗余检测CRC】学习，很简单。<br>PS：我们要特别注意的是【差错检测】只是检测的的【比特差错】，不能保证不丢帧，帧不重复，不乱序这样的错误。所以，就像前面说的，数据链路层只是不可靠的传输。</p>
-</li>
-</ol>
-<hr>
-<p>数据链路层使用的信道主要有两种类型:1.点对点信道 2.广播信道</p>
-<h3 id="点对点信道ppp"><a href="#点对点信道ppp" class="headerlink" title="点对点信道ppp"></a><strong>点对点信道ppp</strong></h3><p>以前吧，通信质量太差，我们用的可靠传输【高级数据链路控制HDLC协议】（这个是OSI模型的协议）。现在科学技术发达了，通信质量好了，然后我们都用上了更快，更简单PPP协议。具体就是这样，下面我们开始来学习什么是PPP协议。</p>
-<p><strong>PPP协议</strong>是用在数据链路层的一种协议，<strong>用户计算机</strong>和<strong>服务器提供商ISP</strong>进行通信的所用的协议。(比如你们宽带连接的时候不是会提示什么PPPOE连接么，其实就是这个PPP+后面要说的以太网。)</p>
-<p>PPP总共三部分组成：</p>
-<ol>
-<li>将网络层（IP）数据报封装成帧的方法</li>
-<li>链路控制协议LCP：主要用来配置一些用户和ISP建立连接的协定</li>
-<li>网络控制协议NCP：网络层协议有好多，所以NCP用来支持各种不同的上层（即网络层）协议。</li>
-</ol>
-<p><strong>PPP协议的帧格式：</strong><br><img src="http://img.blog.csdn.net/20131018144909375?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<ul>
-<li>F代表标志字段（其实就是帧开始和结束），在PPP协议中定义为0x7E。</li>
-<li>A为标志字段，C为控制字段，但是A和C没啥用，很多时候PPP协议中都把他两省去了。</li>
-<li>FCS是前面提到的CRC检验法的留下的帧检验序列FCS。</li>
-<li>协议用不同的二进制码代表 PPP协议中不同的协议，如0xC021代表链路控制协议LCP。</li>
-</ul>
-<p><strong>PPP协议的工作流程:</strong></p>
-<ol>
-<li>当用户拨号接入ISP时，路由器的调制解调器对拨号做出确认，并建立一条物理连接。</li>
-<li>PC机向路由器发送一系列的 LCP 分组（封装成多个 PPP 帧）。</li>
-<li>这些分组及其响应选择一些 PPP 参数，和进行网络层配置，NCP 给新接入的 PC机分配一个临时的 IP 地址，使 PC 机成为因特网上的一个主机。</li>
-<li>通信完毕时，NCP 释放网络层连接，收回原来分配出去的 IP 地址。接着，LCP 释放数据链路层连接。最后释放的是物理层的连接。</li>
-</ol>
-<hr>
-<h3 id="广播信道"><a href="#广播信道" class="headerlink" title="广播信道"></a><strong>广播信道</strong></h3><p>以太网就是现在用的最广泛的局域网，共有两个标准。一个是 DIX Ethernet V2，另一个是IEEE 802.3。<br>IEEE 802.3把局域网的链路层拆为两个子层，<br><del>1.逻辑链路控制LLC</del><br><strong>2.媒体接入控制MAC</strong>。<br>由于各种原因，LLC已经基本不用了。所以我们着重介绍<strong>MAC</strong></p>
-<p>讲MAC之前，我们需要先了解一下 适配器<br><strong> 适配器</strong><br>适配器又叫网卡。<br>网++卡最大的功能是缓冲数据再发送，避免了网络数据率和总线数据率不同而可能引起的问题。每个适配器里都有一个独一无二的，固定的物理地址，这个物理地址就是我们所说的MAC地址。++</p>
-<blockquote>
-<p>所谓广播就是集线器给局域网内的各个站点发送出此数据帧后，只有适配器的MAC地址与数据帧中的目的地址匹配的那个站才接收数据，其他的站就丢掉帧。</p>
-</blockquote>
-<p><strong>MAC</strong><br>MAC地址就是物理地址，固化在适配器（网卡）的ROM中，是48位的全球地址，每一个网卡的MAC地址都是全球唯一的。<br>MAC帧格式：<br><img src="http://img.blog.csdn.net/20131021084624750?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""></p>
-<ul>
-<li>目的地址即目标的mac地址</li>
-<li>源地址 即本机mac地址</li>
-<li>类型是标志上一层使用什么协议，比如0x0800代表上层使用的是IP数据报。</li>
-<li>数据的长度在46-1500字节之间。</li>
-<li>前8字节的作用是，当一个站刚刚接收到MAC帧的时候，由于适配器时钟尚未与叨叨的比特流同步，前面的几位MAC帧可能接收不到，由硬件生成。<br>这8位的前7位叫做前同步码，没啥用，就是为了让接收方调整时钟频率的，8位的最后一位，叫帧开始定界符，就说，定义为10101011，就说，当遇到最后两个11的时候，就是在告诉接收方，MAC帧马上就来了，做好接收准备。</li>
-<li>FCS是前面提到的CRC检验法的留下的帧检验序列FCS。</li>
-</ul>
-<p><strong> CSMA/CD协议</strong></p>
-<p>以太网采用的协议CSMA/CD协议。 CSMA/CD的意思的载波监听多点接入/碰撞检测 （这里的载波不是指那种传输数据的载波，只是借用一个这个词）</p>
-<blockquote>
-<p><strong>多点接入</strong>：就是说网络是总线型的（星形网也是总线型的一种）。CSMA/CD是双向交替通信（半双工通信）<br><strong>载波监听</strong>：不管发送前，还是发送中，每个站必须不停的检测信道。<br><strong>碰撞检测</strong>：当两个或以上的站发传送的数据同时在总线上时，总线上的电压变化幅度就会变大，容易造成传输中的数据损坏。</p>
-</blockquote>
-<p><strong>检测过程</strong>：<br>    发送前检测，是为了获得发送权，如果检测出信道中有数据，就不能发送。发送中检测，是为了及时发现有没有和其他的数据碰撞，也就是碰撞检测。</p>
-<p><img src="http://img.blog.csdn.net/20131019175848187?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbHh0YWx4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br>    <strong>争用期</strong>：如图从A到B点发送一帧来回的时间2T为争用期，只有当完整的度过了争用期没有检测到碰撞，那么我们认为这次发送成功了！</p>
-<p>一旦检测到碰撞，则站点立刻终止发送数据，这样的话，数据就没有帧尾部。数据就不完整，接收方收到数据以后就会发现数据部完整，就把他丢弃了。为了防止数据过短，在检测到碰撞时数据已经发送完，造成接收端收到错误的数据，所以，<strong>我们规定最短的帧长度为64字节（不满64的加入填充字节）</strong>，即512bit。与争用期相同。所以我们就可以说<strong>凡是长度小于64字节的帧都是由于碰撞而异常中止的无效帧</strong>。<br>    那么碰撞中断之后需要重传问题，以太网采用<strong>退避算法</strong>来决定帧的重传。<br>    <strong>退避算法</strong>：从离散的整数集合【0，1，…，（2k-1）】中随机取出一个数，记为r，重传推后时间是r倍的争用期。  k=Min【重传次数，10】。重传次数超过10次就取10，超过16次就把帧丢掉并报告给高层（TCP层）。<br>例如：<br>第一次重传，k=1，r就从（0，1）里面选，因此重传推迟时间就为0或者2τ。</p>
-<p>如果还碰撞，    第二次重传，k=2，r就从（0，1，2，3）选。重传推迟时间就为（0，2τ，4τ，6τ）中的其中之一。</p>
-<blockquote>
-<p><strong>强化碰撞：</strong>发生碰撞以后，除了立即停止发送数据，发送端再发送32bit或者48bit的人为干扰信号。目的是让局域网中所有用户都知道发生了碰撞。</p>
-</blockquote>
-<p>最后一点是，以太网规定了 <strong>帧间最小间隔为9.6μs</strong>。</p>
-<hr>
-
-          
+          <p>基于国际标准化组织（ISO，International Standards Orgnization）的提案，计算机网络的模型应该是七层，也就是我们通常所说的<strong>七层协议（即OSI参考模型），即物理层，数据链路层，网络层，传输层，会话层，表示层和应用层</strong>。<br>但是由于七层协议在实际实现起来比较复杂等等太多的原因，虽然是标准但是最终还是被三层协议所替代，也就是我们通常所说的TCP/IP参考模型，即：网络层，传输层和应用层。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/16/网络协议/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -460,8 +398,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/17/hadoop-0-big data tech/" itemprop="url">
-                  big data tech
+                <a class="post-title-link" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="url">
+                  如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？
                 </a>
               
             
@@ -504,8 +442,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/17/hadoop-0-big data tech/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-0-big data tech/" itemprop="commentsCount"></span>
+                <a href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -529,14 +467,11 @@
 
       
         
-          <h2 id="大数据通用处理平台"><a href="#大数据通用处理平台" class="headerlink" title="大数据通用处理平台"></a>大数据通用处理平台</h2><p>Spark<br>Flink<br>Hadoop</p>
-<p>##　分布式存储</p>
-<p>HDFS</p>
-<h2 id="资源调度"><a href="#资源调度" class="headerlink" title="资源调度"></a>资源调度</h2><p>Yarn<br>Mesos</p>
-<h2 id="数据分析-数据仓库-SQL类"><a href="#数据分析-数据仓库-SQL类" class="headerlink" title="数据分析/数据仓库(SQL类)"></a>数据分析/数据仓库(SQL类)</h2><p>Pig<br>Hive<br>kylin<br>Spark SQL,<br>Spark DataFrame<br>Impala<br>Phoenix</p>
-<h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><p>ElasticSearch<br>Logstash<br>Kibana<br>
+          <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
+<p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
+<p>存的下数据之后，你就开始考虑怎么处理数据。
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/17/hadoop-0-big data tech/#more" rel="contents">
+            <a class="btn" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -725,8 +660,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="url">
-                  如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？
+                <a class="post-title-link" href="/2016/07/17/hadoop-0-big data tech/" itemprop="url">
+                  big data tech
                 </a>
               
             
@@ -769,8 +704,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="commentsCount"></span>
+                <a href="/2016/07/17/hadoop-0-big data tech/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-0-big data tech/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -794,11 +729,14 @@
 
       
         
-          <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
-<p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
-<p>存的下数据之后，你就开始考虑怎么处理数据。
+          <h2 id="大数据通用处理平台"><a href="#大数据通用处理平台" class="headerlink" title="大数据通用处理平台"></a>大数据通用处理平台</h2><p>Spark<br>Flink<br>Hadoop</p>
+<p>##　分布式存储</p>
+<p>HDFS</p>
+<h2 id="资源调度"><a href="#资源调度" class="headerlink" title="资源调度"></a>资源调度</h2><p>Yarn<br>Mesos</p>
+<h2 id="数据分析-数据仓库-SQL类"><a href="#数据分析-数据仓库-SQL类" class="headerlink" title="数据分析/数据仓库(SQL类)"></a>数据分析/数据仓库(SQL类)</h2><p>Pig<br>Hive<br>kylin<br>Spark SQL,<br>Spark DataFrame<br>Impala<br>Phoenix</p>
+<h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><p>ElasticSearch<br>Logstash<br>Kibana<br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#more" rel="contents">
+            <a class="btn" href="/2016/07/17/hadoop-0-big data tech/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1354,6 +1292,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
+                  JVM内存区域与内存溢出异常
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-02T15:57:51+08:00" content="2016-06-02">
+              2016-06-02
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
+                    <span itemprop="name">自动内存管理机制</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
+<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/02/栈和队列(1)/" itemprop="url">
                   栈和队列（一）
                 </a>
@@ -1441,138 +1511,6 @@
 2. 设计的栈类型可以使用线程的栈结构
 </code></pre><p>难度：☆</p>
 
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
-                  JVM内存区域与内存溢出异常
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-02T15:57:51+08:00" content="2016-06-02">
-              2016-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
-                    <span itemprop="name">自动内存管理机制</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
           
         
       
