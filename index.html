@@ -276,6 +276,132 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/29/hadoop-3-hadoop原理/" itemprop="url">
+                  hadoop原理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-29T14:57:50+08:00" content="2016-08-29">
+              2016-08-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/29/hadoop-3-hadoop原理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/29/hadoop-3-hadoop原理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Hadoop</p>
+<p>Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。</p>
+<ul>
+<li>HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。</li>
+<li>MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。</li>
+<li></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/08/16/网络协议/" itemprop="url">
                   网络协议
                 </a>
@@ -469,9 +595,137 @@
         
           <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
 <p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
-<p>存的下数据之后，你就开始考虑怎么处理数据。
+<hr>
+<p><strong>存的下数据之后，你就开始考虑怎么处理数据。</strong><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/07/17/hadoop-0-big data tech/" itemprop="url">
+                  big data tech
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/hadoop-0-big data tech/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-0-big data tech/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="大数据通用处理平台"><a href="#大数据通用处理平台" class="headerlink" title="大数据通用处理平台"></a>大数据通用处理平台</h2><p>Spark<br>Flink<br>Hadoop</p>
+<p>##　分布式存储</p>
+<p>HDFS</p>
+<h2 id="资源调度"><a href="#资源调度" class="headerlink" title="资源调度"></a>资源调度</h2><p>Yarn<br>Mesos</p>
+<h2 id="数据分析-数据仓库-SQL类"><a href="#数据分析-数据仓库-SQL类" class="headerlink" title="数据分析/数据仓库(SQL类)"></a>数据分析/数据仓库(SQL类)</h2><p>Pig<br>Hive<br>kylin<br>Spark SQL,<br>Spark DataFrame<br>Impala<br>Phoenix</p>
+<h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><p>ElasticSearch<br>Logstash<br>Kibana<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/17/hadoop-0-big data tech/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -610,133 +864,6 @@
 <p>####　HashMap官方描述的几个关键点：<br>1.基于Map接口实现：<br>2.允许null键/值：对比hashtable不能为null<br>3.非同步：对比hashtable是同步，线程之间可以共享hashtable<br>4.不保证有序(比如插入的顺序)、也不保证序不随时间变化<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/17/java-HashMap工作原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/17/hadoop-0-big data tech/" itemprop="url">
-                  big data tech
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
-              2016-07-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/17/hadoop-0-big data tech/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-0-big data tech/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="大数据通用处理平台"><a href="#大数据通用处理平台" class="headerlink" title="大数据通用处理平台"></a>大数据通用处理平台</h2><p>Spark<br>Flink<br>Hadoop</p>
-<p>##　分布式存储</p>
-<p>HDFS</p>
-<h2 id="资源调度"><a href="#资源调度" class="headerlink" title="资源调度"></a>资源调度</h2><p>Yarn<br>Mesos</p>
-<h2 id="数据分析-数据仓库-SQL类"><a href="#数据分析-数据仓库-SQL类" class="headerlink" title="数据分析/数据仓库(SQL类)"></a>数据分析/数据仓库(SQL类)</h2><p>Pig<br>Hive<br>kylin<br>Spark SQL,<br>Spark DataFrame<br>Impala<br>Phoenix</p>
-<h2 id="ELK"><a href="#ELK" class="headerlink" title="ELK"></a>ELK</h2><p>ElasticSearch<br>Logstash<br>Kibana<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/17/hadoop-0-big data tech/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1128,123 +1255,17 @@
       
         
           <p>Hadoop 2.7.2</p>
-<h2 id="1-前提准备"><a href="#1-前提准备" class="headerlink" title="1.前提准备"></a>1.前提准备</h2><h3 id="1-1-ssh-集群、单节点模式都需要用到-ssh-登陆"><a href="#1-1-ssh-集群、单节点模式都需要用到-ssh-登陆" class="headerlink" title="1.1 ssh-集群、单节点模式都需要用到 ssh 登陆"></a>1.1 ssh-集群、单节点模式都需要用到 ssh 登陆</h3><p>在opensuse13.2下ssh的使用方式</p>
-<p>ssh默认监听22端口，可以通过以下命令查看22端口是否打开：</p>
-<p>netstat -an | grep :22</p>
-<p>netstat -an | grep ssh</p>
+<h2 id="1-前提准备"><a href="#1-前提准备" class="headerlink" title="1.前提准备"></a>1.前提准备</h2><h3 id="1-1-ssh-集群、单节点模式都需要用到-ssh-登陆"><a href="#1-1-ssh-集群、单节点模式都需要用到-ssh-登陆" class="headerlink" title="1.1 ssh-集群、单节点模式都需要用到 ssh 登陆"></a>1.1 ssh-集群、单节点模式都需要用到 ssh 登陆</h3><p><strong>在opensuse13.2下ssh的使用方式</strong><br>ssh默认监听22端口，可以通过以下命令查看22端口是否打开：<br><code>netstat -an | grep :22</code><br><code>netstat -an | grep ssh</code></p>
 <p>sshd守护进程</p>
-<p>!:(Systemctl是一个<a href="https://wiki.archlinux.org/index.php/systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">Systemd</a>工具，主要负责控制systemd系统和服务管理器。)</p>
-<p>systemctl enable sshd.service</p>
-<p>打开ssh服务</p>
-<p>systemctl start sshd.service<br>
+<blockquote>
+<p>Systemctl是一个<a href="https://wiki.archlinux.org/index.php/systemd_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87">Systemd</a>工具，主要负责控制systemd系统和服务管理器。<br><code>systemctl enable sshd.service</code></p>
+</blockquote>
+<p>打开ssh服务<br>    <code>systemctl start sshd.service</code><br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/15/hadoop-1-安装配置/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/02/fcm算法/" itemprop="url">
-                  fcm算法
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-02T15:57:51+08:00" content="2016-06-02">
-              2016-06-02
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/02/fcm算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/fcm算法/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>FCM算法</p>
-<p>1.FCM概述</p>
-<p>PCM</p>
-
-          
         
       
     </div>
@@ -1424,8 +1445,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/栈和队列(1)/" itemprop="url">
-                  栈和队列（一）
+                <a class="post-title-link" href="/2016/06/02/fcm算法/" itemprop="url">
+                  fcm算法
                 </a>
               
             
@@ -1444,44 +1465,13 @@
           </span>
 
           
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构和算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构和算法/栈和队列/" itemprop="url" rel="index">
-                    <span itemprop="name">栈和队列</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/02/栈和队列(1)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/栈和队列(1)/" itemprop="commentsCount"></span>
+                <a href="/2016/06/02/fcm算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/fcm算法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1506,10 +1496,9 @@
       
         
           
-            <h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h3 id="设计一个有getMin功能的栈"><a href="#设计一个有getMin功能的栈" class="headerlink" title="设计一个有getMin功能的栈"></a>设计一个有getMin功能的栈</h3><p>描述：实现一个特殊的栈，在实现栈的基本功能上，再实现返回栈中最小元素的操作。<br>要求：</p>
-<pre><code>1. pop，push，getMin的时间复杂度都是O(1)
-2. 设计的栈类型可以使用线程的栈结构
-</code></pre><p>难度：☆</p>
+            <p>FCM算法</p>
+<p>1.FCM概述</p>
+<p>PCM</p>
 
           
         
@@ -1583,7 +1572,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
