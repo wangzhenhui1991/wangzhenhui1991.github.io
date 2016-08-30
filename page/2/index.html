@@ -485,7 +485,7 @@
 <p>问题是，我在自己平时用的电脑上发布到github上之后，服务器每次都要自己手动去git pull 远程github上的更新，很麻烦。</p>
 </blockquote>
 <p>所以想怎么能让服务器自动获取到github上的push 更新，然后服务器自动pull最新更新。(因为服务器可以完全服从github上的更新，所以直接pull就可以，不需要fetch后在checkout。)</p>
-<h2 id="解决方案-Webhooks"><a href="#解决方案-Webhooks" class="headerlink" title="解决方案-Webhooks"></a>解决方案-Webhooks</h2><p>github为这个问题提供了很强大的解决方案–<code>Webhooks</code></p>
+<h2 id="解决方案-Webhooks"><a href="#解决方案-Webhooks" class="headerlink" title="解决方案-Webhooks"></a>解决方案-Webhooks</h2><p>github为这个问题提供了很强大的解决方案–<strong>Webhooks</strong></p>
 <blockquote>
 <p>Webhook，也就是人们常说的钩子，是一个很有用的工具。你可以通过定制 Webhook 来监测你在 Github.com 上的各种事件，最常见的莫过于 push 事件。如果你设置了一个监测 push 事件的 Webhook，那么每当你的这个项目有了任何提交，这个 Webhook 都会被触发，这时 Github 就会发送一个 HTTP POST 请求到你配置好的地址。<br>如此一来，你就可以通过这种方式去自动完成一些重复性工作。</p>
 </blockquote>
