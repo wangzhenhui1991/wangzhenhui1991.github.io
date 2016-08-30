@@ -84,28 +84,30 @@
 
 
 
-<meta name="description" content="Hadoop
-Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
+<meta name="description" content="HadHadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
 
 HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。
-MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的">
+MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hadoop原理">
 <meta property="og:url" content="http://wangzhenhui1991.github.io/2016/08/29/hadoop-3-hadoop原理/index.html">
 <meta property="og:site_name" content="王振辉">
-<meta property="og:description" content="Hadoop
-Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
+<meta property="og:description" content="HadHadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
 
 HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。
-MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的">
-<meta property="og:updated_time" content="2016-08-29T08:13:12.458Z">
+MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大">
+<meta property="og:image" content="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/57b942a32d93538d5005345b035a7f1d_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/886c7329f2943c02dc16b356e016d3ce_b.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/27f938d43e54be4eba91c7899daa3bca_b.jpg">
+<meta property="og:updated_time" content="2016-08-30T04:00:37.194Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop原理">
-<meta name="twitter:description" content="Hadoop
-Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
+<meta name="twitter:description" content="HadHadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
 
 HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。
-MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的">
+MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大">
+<meta name="twitter:image" content="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg">
 
 
 
@@ -352,14 +354,34 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
       
 
       
-        <p>Hadoop</p>
-<p>Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。</p>
+        <h2 id="HadHadoop"><a href="#HadHadoop" class="headerlink" title="HadHadoop"></a>HadHadoop</h2><p>Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。</p>
 <ul>
 <li>HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。</li>
-<li>MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。</li>
-<li></li>
+<li>MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。<br><img src="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg" alt=""></li>
 </ul>
-
+<p>用MapReduce统计一个文本文件中单词出现的频率的示例WordCount请参见：WordCount - Hadoop Wiki，如果对MapReduce不恨熟悉，通过该示例对MapReduce进行一些了解对理解下文有帮助。</p>
+<p>MapReduce的Shuffle过程使得MapReduce的写数据处理让开发者感知不到分布式和并发的存在<br><img src="https://pic2.zhimg.com/57b942a32d93538d5005345b035a7f1d_b.jpg" alt=""></p>
+<p>MapReduce实现两个表的Join的过程，注意Map和Reduce两个阶段<br><img src="https://pic3.zhimg.com/886c7329f2943c02dc16b356e016d3ce_b.jpg" alt=""></p>
+<p>Hadoop的局限和不足<br>但是，MapRecue存在以下局限，使用起来比较困难。</p>
+<ul>
+<li>抽象层次低，需要手工编写代码来完成，使用上难以上手。</li>
+<li>只提供两个操作，Map和Reduce，表达力欠缺。</li>
+<li>一个Job只有Map和Reduce两个阶段（Phase），复杂的计算需要大量的Job完成，Job之间的依赖关系是由开发者自己管理的。</li>
+<li>处理逻辑隐藏在代码细节中，没有整体逻辑</li>
+<li>中间结果也放在HDFS文件系统中</li>
+<li>ReduceTask需要等待所有MapTask都完成后才可以开始</li>
+<li>时延高，只适用Batch数据处理，对于交互式数据处理，实时数据处理的支持不够</li>
+<li>对于迭代式数据处理性能比较差</li>
+</ul>
+<hr>
+<h2 id="Pig"><a href="#Pig" class="headerlink" title="Pig"></a>Pig</h2><p>pache Pig也是Hadoop框架中的一部分，Pig提供类SQL语言（Pig Latin）通过MapReduce来处理大规模半结构化数据。而Pig Latin是更高级的过程语言，通过将MapReduce中的设计模式抽象为操作，如Filter，GroupBy，Join，OrderBy，由这些操作组成有向无环图（DAG）。</p>
+<p><code>visits             = load ‘/data/visits’ as (user, url, time);</code><br><code>gVisits          = group visits by url;</code><br><code>visitCounts  = foreach gVisits generate url, count(visits);</code></p>
+<p><code>urlInfo          = load ‘/data/urlInfo’ as (url, category, pRank);</code><br><code>visitCounts  = join visitCounts by url, urlInfo by url;</code></p>
+<p><code>gCategories = group visitCounts by category;</code><br><code>topUrls = foreach gCategories generate top(visitCounts,10);</code></p>
+<p><code>store topUrls into ‘/data/topUrls’;</code></p>
+<p>而Pig Latin又是通过编译为MapReduce，在Hadoop集群上执行的。上述程序被编译成MapReduce时，会产生如下图所示的Map和Reduce：<br><img src="https://pic3.zhimg.com/27f938d43e54be4eba91c7899daa3bca_b.jpg" alt=""><br>Apache Pig解决了MapReduce存在的大量手写代码，语义隐藏，提供操作种类少的问题。类似的项目还有Cascading，JAQL等。</p>
+<hr>
+<h2 id="Tez"><a href="#Tez" class="headerlink" title="Tez"></a>Tez</h2><h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2>
       
     </div>
 
@@ -527,7 +549,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HadHadoop"><span class="nav-number">1.</span> <span class="nav-text">HadHadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pig"><span class="nav-number">2.</span> <span class="nav-text">Pig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tez"><span class="nav-number">3.</span> <span class="nav-text">Tez</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark"><span class="nav-number">4.</span> <span class="nav-text">Spark</span></a></li></ol></div>
             
           </div>
         </section>

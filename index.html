@@ -346,14 +346,34 @@
       
         
           
-            <p>Hadoop</p>
-<p>Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。</p>
+            <h2 id="HadHadoop"><a href="#HadHadoop" class="headerlink" title="HadHadoop"></a>HadHadoop</h2><p>Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。</p>
 <ul>
 <li>HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。</li>
-<li>MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。</li>
-<li></li>
+<li>MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。<br><img src="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg" alt=""></li>
 </ul>
-
+<p>用MapReduce统计一个文本文件中单词出现的频率的示例WordCount请参见：WordCount - Hadoop Wiki，如果对MapReduce不恨熟悉，通过该示例对MapReduce进行一些了解对理解下文有帮助。</p>
+<p>MapReduce的Shuffle过程使得MapReduce的写数据处理让开发者感知不到分布式和并发的存在<br><img src="https://pic2.zhimg.com/57b942a32d93538d5005345b035a7f1d_b.jpg" alt=""></p>
+<p>MapReduce实现两个表的Join的过程，注意Map和Reduce两个阶段<br><img src="https://pic3.zhimg.com/886c7329f2943c02dc16b356e016d3ce_b.jpg" alt=""></p>
+<p>Hadoop的局限和不足<br>但是，MapRecue存在以下局限，使用起来比较困难。</p>
+<ul>
+<li>抽象层次低，需要手工编写代码来完成，使用上难以上手。</li>
+<li>只提供两个操作，Map和Reduce，表达力欠缺。</li>
+<li>一个Job只有Map和Reduce两个阶段（Phase），复杂的计算需要大量的Job完成，Job之间的依赖关系是由开发者自己管理的。</li>
+<li>处理逻辑隐藏在代码细节中，没有整体逻辑</li>
+<li>中间结果也放在HDFS文件系统中</li>
+<li>ReduceTask需要等待所有MapTask都完成后才可以开始</li>
+<li>时延高，只适用Batch数据处理，对于交互式数据处理，实时数据处理的支持不够</li>
+<li>对于迭代式数据处理性能比较差</li>
+</ul>
+<hr>
+<h2 id="Pig"><a href="#Pig" class="headerlink" title="Pig"></a>Pig</h2><p>pache Pig也是Hadoop框架中的一部分，Pig提供类SQL语言（Pig Latin）通过MapReduce来处理大规模半结构化数据。而Pig Latin是更高级的过程语言，通过将MapReduce中的设计模式抽象为操作，如Filter，GroupBy，Join，OrderBy，由这些操作组成有向无环图（DAG）。</p>
+<p><code>visits             = load ‘/data/visits’ as (user, url, time);</code><br><code>gVisits          = group visits by url;</code><br><code>visitCounts  = foreach gVisits generate url, count(visits);</code></p>
+<p><code>urlInfo          = load ‘/data/urlInfo’ as (url, category, pRank);</code><br><code>visitCounts  = join visitCounts by url, urlInfo by url;</code></p>
+<p><code>gCategories = group visitCounts by category;</code><br><code>topUrls = foreach gCategories generate top(visitCounts,10);</code></p>
+<p><code>store topUrls into ‘/data/topUrls’;</code></p>
+<p>而Pig Latin又是通过编译为MapReduce，在Hadoop集群上执行的。上述程序被编译成MapReduce时，会产生如下图所示的Map和Reduce：<br><img src="https://pic3.zhimg.com/27f938d43e54be4eba91c7899daa3bca_b.jpg" alt=""><br>Apache Pig解决了MapReduce存在的大量手写代码，语义隐藏，提供操作种类少的问题。类似的项目还有Cascading，JAQL等。</p>
+<hr>
+<h2 id="Tez"><a href="#Tez" class="headerlink" title="Tez"></a>Tez</h2><h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2>
           
         
       
@@ -524,8 +544,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="url">
-                  如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？
+                <a class="post-title-link" href="/2016/07/17/java-多线程/" itemprop="url">
+                  java-多线程
                 </a>
               
             
@@ -552,8 +572,32 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/hadoop/" itemprop="url" rel="index">
-                    <span itemprop="name">hadoop</span>
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/" itemprop="url" rel="index">
+                    <span itemprop="name">并发</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/并发/多线程/" itemprop="url" rel="index">
+                    <span itemprop="name">多线程</span>
                   </a>
                 </span>
 
@@ -568,8 +612,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="commentsCount"></span>
+                <a href="/2016/07/17/java-多线程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-多线程/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -593,12 +637,10 @@
 
       
         
-          <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
-<p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
+          <h2 id="概述-程序-进程-线程"><a href="#概述-程序-进程-线程" class="headerlink" title="概述 程序-进程-线程"></a>概述 程序-进程-线程</h2><p><strong>程序</strong> Program,是一个静态的概念<br><strong>进程</strong> Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担<br><strong>线程</strong> Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurrent)线程,一个进程中的线程共享相同的内存单元/内存地址空间可以访问相同的变量和对象，而且它们从同一堆中分配对象通信、数据交换、同步操作,由于线程间的通信是在同一地址空间上进行的，所以不需要额外的通信机制，这就使得通信更简便而且信息传递的速度也更快。<br><strong>可以从jvm的内存结构上来理解线程与进程的区别：</strong><br>jvm中每个线程拥有自己独立的栈空间stack，程序计数器counter，本地方法栈native等，<br>而整个进程即可以的内存空间则主要是指jvm中的堆空间和方法区。<br><img src="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/49138c7b6eec92d4711023c9543032ba.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/fc36040aae12743dbb04b02d07c9e49a.png" alt=""></p>
 <hr>
-<p><strong>存的下数据之后，你就开始考虑怎么处理数据。</strong><br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#more" rel="contents">
+            <a class="btn" href="/2016/07/17/java-多线程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -776,6 +818,131 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="url">
+                  如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
+              2016-07-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
+<p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
+<hr>
+<p><strong>存的下数据之后，你就开始考虑怎么处理数据。</strong><br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/17/java-HashMap工作原理/" itemprop="url">
                   java-HashMap工作原理
                 </a>
@@ -864,153 +1031,6 @@
 <p>####　HashMap官方描述的几个关键点：<br>1.基于Map接口实现：<br>2.允许null键/值：对比hashtable不能为null<br>3.非同步：对比hashtable是同步，线程之间可以共享hashtable<br>4.不保证有序(比如插入的顺序)、也不保证序不随时间变化<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/07/17/java-HashMap工作原理/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/17/java-多线程/" itemprop="url">
-                  java-多线程
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-17T09:54:51+08:00" content="2016-07-17">
-              2016-07-17
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/并发/" itemprop="url" rel="index">
-                    <span itemprop="name">并发</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/并发/多线程/" itemprop="url" rel="index">
-                    <span itemprop="name">多线程</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/17/java-多线程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-多线程/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="概述-程序-进程-线程"><a href="#概述-程序-进程-线程" class="headerlink" title="概述 程序-进程-线程"></a>概述 程序-进程-线程</h2><p><strong>程序</strong> Program,是一个静态的概念<br><strong>进程</strong> Process,是一个动态的概念,进程是程序的一次动态执行过程, 占用特定的地址空间.每个进程都是独立的，由3部分组成cpu,data,code,缺点：内存的浪费，cpu的负担<br><strong>线程</strong> Thread,是进程中一个“单一的连续控制流程”.又被称为轻量级进程(lightweight process),一个进程可拥有多个并行的(concurrent)线程,一个进程中的线程共享相同的内存单元/内存地址空间可以访问相同的变量和对象，而且它们从同一堆中分配对象通信、数据交换、同步操作,由于线程间的通信是在同一地址空间上进行的，所以不需要额外的通信机制，这就使得通信更简便而且信息传递的速度也更快。<br><strong>可以从jvm的内存结构上来理解线程与进程的区别：</strong><br>jvm中每个线程拥有自己独立的栈空间stack，程序计数器counter，本地方法栈native等，<br>而整个进程即可以的内存空间则主要是指jvm中的堆空间和方法区。<br><img src="http://img.i.liebao.cn/assets/images/4fd8140bafe11288ae265d2c7180d9ee.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/49138c7b6eec92d4711023c9543032ba.png" alt=""><br><img src="http://img.i.liebao.cn/assets/images/fc36040aae12743dbb04b02d07c9e49a.png" alt=""></p>
-<hr>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/17/java-多线程/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1445,8 +1465,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/fcm算法/" itemprop="url">
-                  fcm算法
+                <a class="post-title-link" href="/2016/06/02/栈和队列(1)/" itemprop="url">
+                  栈和队列（一）
                 </a>
               
             
@@ -1465,13 +1485,44 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构和算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构和算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/数据结构和算法/栈和队列/" itemprop="url" rel="index">
+                    <span itemprop="name">栈和队列</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/02/fcm算法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/fcm算法/" itemprop="commentsCount"></span>
+                <a href="/2016/06/02/栈和队列(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/栈和队列(1)/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1496,9 +1547,10 @@
       
         
           
-            <p>FCM算法</p>
-<p>1.FCM概述</p>
-<p>PCM</p>
+            <h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h3 id="设计一个有getMin功能的栈"><a href="#设计一个有getMin功能的栈" class="headerlink" title="设计一个有getMin功能的栈"></a>设计一个有getMin功能的栈</h3><p>描述：实现一个特殊的栈，在实现栈的基本功能上，再实现返回栈中最小元素的操作。<br>要求：</p>
+<pre><code>1. pop，push，getMin的时间复杂度都是O(1)
+2. 设计的栈类型可以使用线程的栈结构
+</code></pre><p>难度：☆</p>
 
           
         
