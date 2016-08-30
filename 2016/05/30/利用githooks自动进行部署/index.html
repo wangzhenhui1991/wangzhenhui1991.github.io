@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="github,blog,webhook,nodejs," />
+  <meta name="keywords" content="webhook,blog,nodejs,github," />
 
 
 
@@ -98,7 +98,7 @@
 问题是，我在自己平时用的电脑上发布到github上之后，服务器每次都要自己手动去git pull 远程github上的更新，很麻烦。
 
 所以想怎么能让服务器自动获取到githu">
-<meta property="og:updated_time" content="2016-05-31T06:54:25.121Z">
+<meta property="og:updated_time" content="2016-08-30T04:29:53.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="利用githooks自动进行部署">
 <meta name="twitter:description" content="背景自从利用hexo在github的gitpages上搭建了博客之后，又将wangzhenhui1991.github.io同步clone到自己的服务器下/var/www/html上，这样就可以直接从自己的域名下访问了。
@@ -363,24 +363,7 @@
 </blockquote>
 <a id="more"></a>
 <p>基本流程:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">本机-&gt;Github: git push</span><br><span class="line">Note right of Bob: Bob thinks</span><br><span class="line">Github--&gt;服务器: webhook send POST</span><br><span class="line">Note right of 服务器: git pull</span><br><span class="line">Github--&gt;服务器: git pull</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Title:连接建立的过程</span><br><span class="line">客户主机-&gt;服务器主机: 连接请求（SYN=1,seq=client_isn）</span><br><span class="line">服务器主机-&gt;客户主机: 授予连接（SYN=1,seq=client_isn）\n ack=client_isn+1</span><br><span class="line">客户主机-&gt;服务器主机: 确认（SYN=0,seq=client_isn+1）\nack=server_isn+1</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">st=&gt;start: Start:&gt;https://www.zybuluo.com</span><br><span class="line">io=&gt;inputoutput: verification</span><br><span class="line">op=&gt;operation: Your Operation</span><br><span class="line">cond=&gt;condition: Yes or No?</span><br><span class="line">sub=&gt;subroutine: Your Subroutine</span><br><span class="line">e=&gt;end</span><br><span class="line"></span><br><span class="line">st-&gt;io-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;sub-&gt;io</span><br></pre></td></tr></table></figure>
-<pre><code>本机：
-     1.更新博客内容
-     2.push发布到github上.即我们的仓库wangzhenhui1991.github.io
-   github:
-     3.github接收到来自本机的更新（已配置hook）,此时wangzhenhui1991.github.io已经完成更新
-     4.向githook配置中的url(http://ip:port/dir)发送POST
-远程服务器
-     5.存放dir中监听服务器中port的相应程序(本例中使用nodejs编写监听程序)
-     6.收到相应POST信息，解析，获取git更新确认
-     7.运行程序中的相应的git命令(cd dir &amp;&amp; git pull origin)
-</code></pre><p>所以我们需要：<br>    1.配置github 的webHook<br>    2.配置远程服务器响应来自githook的POST</p>
-<h2 id="配置webhook"><a href="#配置webhook" class="headerlink" title="配置webhook"></a>配置webhook</h2><p>在github的相应的仓库下<code>Setting--&gt;WebHooks &amp; service</code>设置hook。<br>    1.Payload URL—-&gt;即配置我们远程服务器的地址<br>    本例中为<code>http://*.*.*.*:port/home/</code>，这里需要注意/home目录，要跟下面nodejs 代码中的相对应。<br>    2.Content type—-&gt;POST的格式,默认为jaso,不用动<br>    3.Secret—-&gt;相当于接头暗号，让你的远程服务器知道是github给你发的消息，而不是其他什么恶意/无意/有意的消息<br>    4.Just the push event —-&gt;这有当这个仓库发生push时才出发hook</p>
-<p>全部配置好之后，该hook配置会去测试是否能够发送到服务器，成功则变成<code>绿色√</code></p>
-<h2 id="配置服务器响应WebHook"><a href="#配置服务器响应WebHook" class="headerlink" title="配置服务器响应WebHook"></a>配置服务器响应WebHook</h2><p>   本例使用nodejs相应hook，所以先安装nodejs</p>
-<h4 id="centos安装nodejs"><a href="#centos安装nodejs" class="headerlink" title="centos安装nodejs"></a>centos安装nodejs</h4><h5 id="方法1："><a href="#方法1：" class="headerlink" title="方法1："></a>方法1：</h5><p>下载源码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v4.4.5/node-v4.4.5.tar.gz</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">	本机：</span><br><span class="line">    	 1.更新博客内容</span><br><span class="line">    	 2.push发布到github上.即我们的仓库wangzhenhui1991.github.io</span><br><span class="line">   	github:</span><br><span class="line">    	 3.github接收到来自本机的更新（已配置hook）,此时wangzhenhui1991.github.io已经完成更新</span><br><span class="line">    	 4.向githook配置中的url(http://ip:port/dir)发送POST</span><br><span class="line">	远程服务器</span><br><span class="line">    	 5.存放dir中监听服务器中port的相应程序(本例中使用nodejs编写监听程序)</span><br><span class="line">    	 6.收到相应POST信息，解析，获取git更新确认</span><br><span class="line">    	 7.运行程序中的相应的git命令(cd dir &amp;&amp; git pull origin)</span><br><span class="line">所以我们需要：</span><br><span class="line">	1.配置github 的webHook</span><br><span class="line">	2.配置远程服务器响应来自githook的POST</span><br><span class="line"></span><br><span class="line">## 配置webhook</span><br><span class="line"></span><br><span class="line">在github的相应的仓库下`Setting--&gt;WebHooks &amp; service`设置hook。</span><br><span class="line">	1.Payload URL----&gt;即配置我们远程服务器的地址</span><br><span class="line">    本例中为`http://*.*.*.*:port/home/`，这里需要注意/home目录，要跟下面nodejs 代码中的相对应。</span><br><span class="line">    2.Content type----&gt;POST的格式,默认为jaso,不用动</span><br><span class="line">    3.Secret----&gt;相当于接头暗号，让你的远程服务器知道是github给你发的消息，而不是其他什么恶意/无意/有意的消息</span><br><span class="line">	4.Just the push event ----&gt;这有当这个仓库发生push时才出发hook</span><br><span class="line"></span><br><span class="line">全部配置好之后，该hook配置会去测试是否能够发送到服务器，成功则变成`绿色√`</span><br><span class="line"></span><br><span class="line">## 配置服务器响应WebHook</span><br><span class="line">   本例使用nodejs相应hook，所以先安装nodejs</span><br><span class="line">#### centos安装nodejs</span><br><span class="line">##### 方法1：</span><br><span class="line">下载源码</span><br><span class="line">```bash</span><br><span class="line">wget https://nodejs.org/dist/v4.4.5/node-v4.4.5.tar.gz</span><br></pre></td></tr></table></figure>
 <p>解压<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xzvf node-v*</span><br></pre></td></tr></table></figure></p>
 <p>安装编译环境<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> node-v*</span><br><span class="line">yum install gcc gcc-c++</span><br></pre></td></tr></table></figure></p>
 <p>编译<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
@@ -414,13 +397,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/github/" rel="tag">#github</a>
+            <a href="/tags/webhook/" rel="tag">#webhook</a>
           
             <a href="/tags/blog/" rel="tag">#blog</a>
           
-            <a href="/tags/webhook/" rel="tag">#webhook</a>
-          
             <a href="/tags/nodejs/" rel="tag">#nodejs</a>
+          
+            <a href="/tags/github/" rel="tag">#github</a>
           
         </div>
       
@@ -437,8 +420,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/06/02/fcm算法/" rel="prev" title="fcm算法">
-                fcm算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/06/02/栈和队列(1)/" rel="prev" title="栈和队列（一）">
+                栈和队列（一） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -577,7 +560,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案-Webhooks"><span class="nav-number">2.</span> <span class="nav-text">解决方案-Webhooks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置webhook"><span class="nav-number">3.</span> <span class="nav-text">配置webhook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置服务器响应WebHook"><span class="nav-number">4.</span> <span class="nav-text">配置服务器响应WebHook</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#centos安装nodejs"><span class="nav-number">4.0.1.</span> <span class="nav-text">centos安装nodejs</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法1："><span class="nav-number">4.0.1.1.</span> <span class="nav-text">方法1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#方法2："><span class="nav-number">4.0.1.2.</span> <span class="nav-text">方法2：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相应脚本"><span class="nav-number">4.0.2.</span> <span class="nav-text">相应脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实时监听"><span class="nav-number">4.0.3.</span> <span class="nav-text">实时监听</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案-Webhooks"><span class="nav-number">2.</span> <span class="nav-text">解决方案-Webhooks</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#方法2："><span class="nav-number">2.0.0.1.</span> <span class="nav-text">方法2：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相应脚本"><span class="nav-number">2.0.1.</span> <span class="nav-text">相应脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实时监听"><span class="nav-number">2.0.2.</span> <span class="nav-text">实时监听</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
           </div>
         </section>
