@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="notes,linux," />
 
 
 
@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
-newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
+<meta name="description" content="磁盘空间/dev/sdb2-100%背景：在VMWare12中使用OpenSUSE13.2的过程中，在一次练习Hadoop中发现系统崩溃时间：2016-8-30虚拟机：VMWare-12系统：OpenSUSE-13.2问题：逻辑分区/dev/sdb2 可用空间0%(10.9GB/11GB)导致：程序无法启动，bash无法使用，kde自动退出，系统进而退出。
+解决过程：几个查看命令：$    df">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM内存区域与内存溢出异常">
-<meta property="og:url" content="http://wangzhenhui1991.github.io/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/index.html">
+<meta property="og:title" content="linux问题集锦">
+<meta property="og:url" content="http://wangzhenhui1991.github.io/2016/08/31/linux-问题集锦-1/index.html">
 <meta property="og:site_name" content="王振辉">
-<meta property="og:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
-newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
-<meta property="og:updated_time" content="2016-07-06T06:29:29.735Z">
+<meta property="og:description" content="磁盘空间/dev/sdb2-100%背景：在VMWare12中使用OpenSUSE13.2的过程中，在一次练习Hadoop中发现系统崩溃时间：2016-8-30虚拟机：VMWare-12系统：OpenSUSE-13.2问题：逻辑分区/dev/sdb2 可用空间0%(10.9GB/11GB)导致：程序无法启动，bash无法使用，kde自动退出，系统进而退出。
+解决过程：几个查看命令：$    df">
+<meta property="og:updated_time" content="2016-08-31T14:16:13.771Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM内存区域与内存溢出异常">
-<meta name="twitter:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
-newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
+<meta name="twitter:title" content="linux问题集锦">
+<meta name="twitter:description" content="磁盘空间/dev/sdb2-100%背景：在VMWare12中使用OpenSUSE13.2的过程中，在一次练习Hadoop中发现系统崩溃时间：2016-8-30虚拟机：VMWare-12系统：OpenSUSE-13.2问题：逻辑分区/dev/sdb2 可用空间0%(10.9GB/11GB)导致：程序无法启动，bash无法使用，kde自动退出，系统进而退出。
+解决过程：几个查看命令：$    df">
 
 
 
@@ -114,7 +114,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
   };
 </script>
 
-  <title> JVM内存区域与内存溢出异常 | 王振辉 </title>
+  <title> linux问题集锦 | 王振辉 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -277,7 +277,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
             
             
               
-                JVM内存区域与内存溢出异常
+                linux问题集锦
               
             
           </h1>
@@ -289,8 +289,8 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-02T15:57:51+08:00" content="2016-06-02">
-              2016-06-02
+            <time itemprop="dateCreated" datetime="2016-08-31T15:08:51+08:00" content="2016-08-31">
+              2016-08-31
             </time>
           </span>
 
@@ -303,20 +303,8 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
-                    <span itemprop="name">自动内存管理机制</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -331,8 +319,8 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
+                <a href="/2016/08/31/linux-问题集锦-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/linux-问题集锦-1/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -355,8 +343,22 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
       
 
       
-        <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
+        <h2 id="磁盘空间-dev-sdb2-100"><a href="#磁盘空间-dev-sdb2-100" class="headerlink" title="磁盘空间/dev/sdb2-100%"></a>磁盘空间/dev/sdb2-100%</h2><p>背景：在VMWare12中使用OpenSUSE13.2的过程中，在一次练习Hadoop中发现系统崩溃<br>时间：2016-8-30<br>虚拟机：VMWare-12<br>系统：OpenSUSE-13.2<br>问题：逻辑分区/dev/sdb2 可用空间0%(10.9GB/11GB)<br>导致：程序无法启动，bash无法使用，kde自动退出，系统进而退出。</p>
+<p>解决过程：<br>几个查看命令：<br><code>$    df -h                     #查看磁盘空间</code><br><code>$    ls -Sl | more -5       #按大小排序详细显示文件信息，并以每5个展现</code><br><code>$    du -s -h ./*            #查看目录占用情况并显示大小</code></p>
+<p>跟踪查看了/目录下的文件大小，发现主要是</p>
+<ul>
+<li><p><strong>/tmp—-&gt;/var/tmp</strong><br>/tmp目录实际链接到/var/tmp缓存文件，里面有大量目录缓存，zypper的安装缓存，以及VMWareDnd(即客户机到虚拟机拖拽传送的文件缓存)，占据了大概700M的内容</p>
+</li>
+<li><p><strong>/usr/</strong><br>/usr中主要是/lib和/lib64这两个存放各种库文件的目录，随着安装的程序增多，会占据越来越多的控件，占了大概2-3G的空间，不太好清理</p>
+</li>
+<li><p><strong>/log</strong><br>这里面存放着系统的日志文件</p>
+</li>
+</ul>
+<p><code>$ zypper install tmpwatch    #安装tmpwatch</code><br><code>$ tmpwatch 24 /tmp            #删除/tmp文件夹中24小时以上没有使用的文件</code><br><em> </em> _<a id="more"></a></p>
+<h2 id="OpenSUSE13-2-profile-local"><a href="#OpenSUSE13-2-profile-local" class="headerlink" title="OpenSUSE13.2 profile.local"></a>OpenSUSE13.2 profile.local</h2><p>背景：需要配置Hadoop和Java的Path的时候(openSUSE13.2预装的是jre不是jdk,不带kit工具)，发现OpenSuse13.2中的/etc/profile是不建议用户修改profile的，然后需要在/etc/下新建一个profile.local文件，将用户额外需要配置的path在这里面设置。<br>profile源码中会去检查是否有profile.local这个文件并载入。<br>例：<br><code>vim /etc/profile.local</code></p>
+<p>export JAVA_HOME=/usr/java/java_1.8<br>export PATH=$JAVA_HOME/bin:%PATH<br>exprot CLASSPATH~@￥￥#&amp;（）（——*…..</p>
+<hr>
+
       
     </div>
 
@@ -375,22 +377,26 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/notes/" rel="tag">#notes</a>
+          
+            <a href="/tags/linux/" rel="tag">#linux</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/02/fcm算法/" rel="next" title="fcm算法">
-                <i class="fa fa-chevron-left"></i> fcm算法
+              <a href="/2016/08/29/hadoop-3-hadoop原理/" rel="next" title="hadoop,yarn,spark,pig,Tez原理">
+                <i class="fa fa-chevron-left"></i> hadoop,yarn,spark,pig,Tez原理
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/15/hadoop-1-安装配置/" rel="prev" title="hadoop在opensuse13.2下安装配置">
-                hadoop在opensuse13.2下安装配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -416,8 +422,8 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/"
-           data-title="JVM内存区域与内存溢出异常" data-url="http://wangzhenhui1991.github.io/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/">
+      <div class="ds-thread" data-thread-key="2016/08/31/linux-问题集锦-1/"
+           data-title="linux问题集锦" data-url="http://wangzhenhui1991.github.io/2016/08/31/linux-问题集锦-1/">
       </div>
     
   </div>
@@ -528,7 +534,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-程序计数器"><span class="nav-number">1.2.</span> <span class="nav-text">1. 程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-java虚拟机栈"><span class="nav-number">1.3.</span> <span class="nav-text">2. java虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-本地方法栈"><span class="nav-number">1.4.</span> <span class="nav-text">3. 本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-java堆"><span class="nav-number">1.5.</span> <span class="nav-text">4. java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-方法区"><span class="nav-number">1.6.</span> <span class="nav-text">5. 方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.7.</span> <span class="nav-text">6. 直接内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM-HotSpot-对象创建过程"><span class="nav-number">1.8.</span> <span class="nav-text">JVM(HotSpot)对象创建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new"><span class="nav-number">1.8.1.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init"><span class="nav-number">1.8.2.</span> <span class="nav-text">init</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对象的内存分布"><span class="nav-number">1.9.</span> <span class="nav-text">2. 对象的内存分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象头Header"><span class="nav-number">1.9.1.</span> <span class="nav-text">对象头Header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Mark-Word"><span class="nav-number">1.9.2.</span> <span class="nav-text">1. Mark Word</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-类型指针"><span class="nav-number">1.9.3.</span> <span class="nav-text">2. 类型指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例数据Instance-Data"><span class="nav-number">1.9.4.</span> <span class="nav-text">实例数据Instance Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐填充Padding"><span class="nav-number">1.9.5.</span> <span class="nav-text">对齐填充Padding</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对象的访问定位"><span class="nav-number">1.10.</span> <span class="nav-text">3. 对象的访问定位</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘空间-dev-sdb2-100"><span class="nav-number">1.</span> <span class="nav-text">磁盘空间/dev/sdb2-100%</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenSUSE13-2-profile-local"><span class="nav-number">2.</span> <span class="nav-text">OpenSUSE13.2 profile.local</span></a></li></ol></div>
             
           </div>
         </section>

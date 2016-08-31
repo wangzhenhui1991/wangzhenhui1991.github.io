@@ -84,29 +84,32 @@
 
 
 
-<meta name="description" content="HadHadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
-
-HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。
-MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大">
+<meta name="description" content="HadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
+Apache Hadoop 简介Apache Hadoop 是一个开源软件框架，可安装在一个商用机器集群中，使机器可彼此通信并协同工作，以高度分布式的方式共同存储和处理大量数据。最初，Hadoop 包含以下两个主要组件：Hadoop Distributed File Sy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hadoop原理">
+<meta property="og:title" content="hadoop,yarn,spark,pig,Tez原理">
 <meta property="og:url" content="http://wangzhenhui1991.github.io/2016/08/29/hadoop-3-hadoop原理/index.html">
 <meta property="og:site_name" content="王振辉">
-<meta property="og:description" content="HadHadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
-
-HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。
-MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大">
+<meta property="og:description" content="HadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
+Apache Hadoop 简介Apache Hadoop 是一个开源软件框架，可安装在一个商用机器集群中，使机器可彼此通信并协同工作，以高度分布式的方式共同存储和处理大量数据。最初，Hadoop 包含以下两个主要组件：Hadoop Distributed File Sy">
 <meta property="og:image" content="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/57b942a32d93538d5005345b035a7f1d_b.jpg">
-<meta property="og:image" content="https://pic3.zhimg.com/886c7329f2943c02dc16b356e016d3ce_b.jpg">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/37ecdd002fe79a0d63af530fabb2b568.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/cb60dd8ef86afad14efd4acde3014185.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/db17de65144ef971e36141910c0b9ea9.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/b22abc8e0e5acb5a2ed9b96f0696cb70.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/2d84018e9ce14b62f04cb9cdeab94151.png">
 <meta property="og:image" content="https://pic3.zhimg.com/27f938d43e54be4eba91c7899daa3bca_b.jpg">
-<meta property="og:updated_time" content="2016-08-30T04:00:37.194Z">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/13b0361a33f775088edec846be8eff51.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/b99480e5023049c3b3f5676f0401801d.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/5b6ad55670203a164fe9b73127c6f9f2.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/f4b1442866ed0114866aa6ea98c6a0f4.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/303d9530e8653dba1b3a4210c624981d.png">
+<meta property="og:image" content="http://img.i.liebao.cn/assets/images/63741e71c0851c7670439297fa2fb21c.png">
+<meta property="og:updated_time" content="2016-08-31T14:15:22.352Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hadoop原理">
-<meta name="twitter:description" content="HadHadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
-
-HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。
-MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大">
+<meta name="twitter:title" content="hadoop,yarn,spark,pig,Tez原理">
+<meta name="twitter:description" content="HadoopHadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。
+Apache Hadoop 简介Apache Hadoop 是一个开源软件框架，可安装在一个商用机器集群中，使机器可彼此通信并协同工作，以高度分布式的方式共同存储和处理大量数据。最初，Hadoop 包含以下两个主要组件：Hadoop Distributed File Sy">
 <meta name="twitter:image" content="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg">
 
 
@@ -125,7 +128,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
   };
 </script>
 
-  <title> hadoop原理 | 王振辉 </title>
+  <title> hadoop,yarn,spark,pig,Tez原理 | 王振辉 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +291,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
             
             
               
-                hadoop原理
+                hadoop,yarn,spark,pig,Tez原理
               
             
           </h1>
@@ -354,15 +357,42 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
       
 
       
-        <h2 id="HadHadoop"><a href="#HadHadoop" class="headerlink" title="HadHadoop"></a>HadHadoop</h2><p>Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。</p>
-<ul>
-<li>HDFS，在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。</li>
-<li>MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。<br><img src="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg" alt=""></li>
-</ul>
+        <h2 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h2><p>Hadoop就是解决了大数据（大到一台计算机无法进行存储，一台计算机无法在要求的时间内进行处理）的可靠存储和处理。</p>
+<h3 id="Apache-Hadoop-简介"><a href="#Apache-Hadoop-简介" class="headerlink" title="Apache Hadoop 简介"></a>Apache Hadoop 简介</h3><p>Apache Hadoop 是一个开源软件框架，可安装在一个商用机器集群中，使机器可彼此通信并协同工作，以高度分布式的方式共同存储和处理大量数据。最初，Hadoop 包含以下两个主要组件：Hadoop Distributed File System (HDFS) 和一个分布式计算引擎，该引擎支持以 MapReduce 作业的形式实现和运行程序。</p>
+<p>MapReduce 是 Google 推广的一个简单的编程模型，它对以高度并行和可扩展的方式处理大数据集很有用。MapReduce 的灵感来源于函数式编程，用户可将他们的计算表达为 map 和 reduce 函数，将数据作为键值对来处理。Hadoop 提供了一个高级 API 来在各种语言中实现自定义的 map 和 reduce 函数。</p>
+<p>Hadoop 还提供了软件基础架构，以一系列 map 和 reduce 任务的形式运行 MapReduce 作业。Map 任务 在输入数据的子集上调用 map 函数。在完成这些调用后，reduce 任务 开始在 map 函数所生成的中间数据上调用 reduce 任务，生成最终的输出。 map 和 reduce 任务彼此单独运行，这支持并行和容错的计算。</p>
+<p>最重要的是，Hadoop 基础架构负责处理分布式处理的所有复杂方面：并行化、调度、资源管理、机器间通信、软件和硬件故障处理，等等。得益于这种干净的抽象，实现处理数百（或者甚至数千）个机器上的数 TB 数据的分布式应用程序从未像现在这么容易过，甚至对于之前没有使用分布式系统的经验的开发人员也是如此。<br><a id="more"></a></p>
+<h3 id="Hadoop的黄金时代"><a href="#Hadoop的黄金时代" class="headerlink" title="Hadoop的黄金时代"></a>Hadoop的黄金时代</h3><p>尽管 MapReduce 模型存在着多种开源实现，但 Hadoop MapReduce 很快就变得非常流行。Hadoop 也是全球最令人兴奋的开源项目之一，它提供了多项出色的功能：高级 API、近线性的可伸缩性、开源许可、在商用硬件上运行的能力，以及容错。它已获得数百（或许已达数千）个公司的成功部署，是大规模分布式存储和处理的最新标准。</p>
+<p>一些早期的 Hadoop 采用者，比如 Yahoo! 和 Facebook，构建了包含 4,000 个节点的大型集群，以满足不断增长和变化的数据处理需求。但是，在构建自己的集群后，他们开始注意到了 Hadoop MapReduce 框架的一些局限性。</p>
+<h3 id="HDFS"><a href="#HDFS" class="headerlink" title="HDFS"></a>HDFS</h3><p>在由普通PC组成的集群上提供高可靠的文件存储，通过将块保存多个副本的办法解决服务器或硬盘坏掉的问题。</p>
+<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3><p>MapReduce通过简单的Mapper和Reducer的抽象提供一个编程模型，可以在一个由几十台上百台的PC组成的不可靠集群上并发地，分布式地处理大量的数据集，而把并发、分布式（如机器间通信）和故障恢复等计算细节隐藏起来。而Mapper和Reducer的抽象，又是各种各样的复杂数据处理都可以分解为的基本元素。这样，复杂的数据处理可以分解为由多个Job（包含一个Mapper和一个Reducer）组成的有向无环图（DAG）,然后每个Mapper和Reducer放到Hadoop集群上执行，就可以得出结果。<br><img src="https://pic4.zhimg.com/a3376a50926db253dbce2cbc3284d5a7_b.jpg" alt=""></p>
 <p>用MapReduce统计一个文本文件中单词出现的频率的示例WordCount请参见：WordCount - Hadoop Wiki，如果对MapReduce不恨熟悉，通过该示例对MapReduce进行一些了解对理解下文有帮助。</p>
-<p>MapReduce的Shuffle过程使得MapReduce的写数据处理让开发者感知不到分布式和并发的存在<br><img src="https://pic2.zhimg.com/57b942a32d93538d5005345b035a7f1d_b.jpg" alt=""></p>
-<p>MapReduce实现两个表的Join的过程，注意Map和Reduce两个阶段<br><img src="https://pic3.zhimg.com/886c7329f2943c02dc16b356e016d3ce_b.jpg" alt=""></p>
-<p>Hadoop的局限和不足<br>但是，MapRecue存在以下局限，使用起来比较困难。</p>
+<p>MapReduce的Shuffle过程使得MapReduce的写数据处理让开发者感知不到分布式和并发的存在<br><img src="http://img.i.liebao.cn/assets/images/37ecdd002fe79a0d63af530fabb2b568.png" alt=""></p>
+<p>MapReduce实现两个表的Join的过程，注意Map和Reduce两个阶段<br><img src="http://img.i.liebao.cn/assets/images/cb60dd8ef86afad14efd4acde3014185.png" alt=""></p>
+<h3 id="hadoop架构"><a href="#hadoop架构" class="headerlink" title="hadoop架构"></a>hadoop架构</h3><p><img src="http://img.i.liebao.cn/assets/images/db17de65144ef971e36141910c0b9ea9.png" alt="hadoop执行过程"><br>从上图中可以清楚的看出原 MapReduce 程序的流程及设计思路：</p>
+<ul>
+<li>首先用户程序 (JobClient) 提交了一个 job，job 的信息会发送到 Job Tracker 中，Job Tracker 是 Map-reduce 框架的中心，他需要与集群中的机器定时通信 (heartbeat), 需要管理哪些程序应该跑在哪些机器上，需要管理所有 job 失败、重启等操作。</li>
+<li>TaskTracker 是 Map-reduce 集群中每台机器都有的一个部分，他做的事情主要是监视自己所在机器的资源情况。</li>
+<li>TaskTracker 同时监视当前机器的 tasks 运行状况。TaskTracker 需要把这些信息通过 heartbeat 发送给 JobTracker，JobTracker 会搜集这些信息以给新提交的 job 分配运行在哪些机器上。上图虚线箭头就是表示消息的发送 - 接收的过程。</li>
+</ul>
+<p>可以看得出原来的 map-reduce 架构是简单明了的，在最初推出的几年，也得到了众多的成功案例，获得业界广泛的支持和肯定，但随着分布式系统集群的规模和其工作负荷的增长，原框架的问题逐渐浮出水面，主要的问题集中如下：</p>
+<ul>
+<li>JobTracker 是 Map-reduce 的集中处理点，存在单点故障。</li>
+<li>JobTracker 完成了太多的任务，造成了过多的资源消耗，当 map-reduce job 非常多的时候，会造成很大的内存开销，潜在来说，也增加了 JobTracker fail 的风险，这也是业界普遍总结出老 Hadoop 的 Map-Reduce 只能支持 4000 节点主机的上限。</li>
+<li>在 TaskTracker 端，以 map/reduce task 的数目作为资源的表示过于简单，没有考虑到 cpu/ 内存的占用情况，如果两个大内存消耗的 task 被调度到了一块，很容易出现 OOM。<br>在 TaskTracker 端，把资源强制划分为 map task slot 和 reduce task slot, 如果当系统中只有 map task 或者只有 reduce task 的时候，会造成资源的浪费，也就是前面提过的集群资源利用的问题。</li>
+<li>源代码层面分析的时候，会发现代码非常的难读，常常因为一个 class 做了太多的事情，代码量达 3000 多行，，造成 class 的任务不清晰，增加 bug 修复和版本维护的难度。</li>
+<li>从操作的角度来看，现在的 Hadoop MapReduce 框架在有任何重要的或者不重要的变化 ( 例如 bug 修复，性能提升和特性化 ) 时，都会强制进行系统级别的升级更新。更糟的是，它不管用户的喜好，强制让分布式集群系统的每一个用户端同时更新。这些更新会让用户为了验证他们之前的应用程序是不是适用新的 Hadoop 版本而浪费大量时间。</li>
+</ul>
+<h3 id="Hadoop的改进-局限-不足"><a href="#Hadoop的改进-局限-不足" class="headerlink" title="Hadoop的改进/局限/不足"></a>Hadoop的改进/局限/不足</h3><p>经典 MapReduce 的最严重的限制主要关系到可伸缩性、资源利用和对与 MapReduce 不同的工作负载的支持。在 MapReduce 框架中，作业执行受两种类型的进程控制：</p>
+<ul>
+<li>一个称为 JobTracker 的主要进程，它协调在集群上运行的所有作业，分配要在 TaskTracker 上运行的 map 和 reduce 任务。</li>
+<li>许多称为 TaskTracker 的下级进程，它们运行分配的任务并定期向 JobTracker 报告进度。<br><img src="http://img.i.liebao.cn/assets/images/b22abc8e0e5acb5a2ed9b96f0696cb70.png" alt=""></li>
+</ul>
+<p>大型的 Hadoop 集群显现出了由单个 JobTracker 导致的可伸缩性瓶颈。依据 Yahoo!，在集群中有 5,000 个节点和 40,000 个任务同时运行时，这样一种设计实际上就会受到限制。由于此限制，必须创建和维护更小的、功能更差的集群。</p>
+<p>此外，较小和较大的 Hadoop 集群都从未最高效地使用他们的计算资源。在 Hadoop MapReduce 中，每个从属节点上的计算资源由集群管理员分解为固定数量的 map 和 reduce slot，这些 slot 不可替代。设定 map slot 和 reduce slot 的数量后，节点在任何时刻都不能运行比 map slot 更多的 map 任务，即使没有 reduce 任务在运行。这影响了集群的利用率，因为在所有 map slot 都被使用（而且我们还需要更多）时，我们无法使用任何 reduce slot，即使它们可用，反之亦然。</p>
+<p>最后但同样重要的是，Hadoop 设计为仅运行 MapReduce 作业。随着替代性的编程模型（比如 Apache Giraph 所提供的图形处理）的到来，除 MapReduce 外，越来越需要为可通过高效的、公平的方式在同一个集群上运行并共享资源的其他编程模型提供支持。</p>
+<p>2010 年，Yahoo! 的工程师开始研究一种全新的 Hadoop 架构，用这种架构来解决上述所有限制并增加多种附加功能。</p>
+<p>MapRecue存在以下局限，使用起来比较困难。</p>
 <ul>
 <li>抽象层次低，需要手工编写代码来完成，使用上难以上手。</li>
 <li>只提供两个操作，Map和Reduce，表达力欠缺。</li>
@@ -373,6 +403,15 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
 <li>时延高，只适用Batch数据处理，对于交互式数据处理，实时数据处理的支持不够</li>
 <li>对于迭代式数据处理性能比较差</li>
 </ul>
+<h3 id="解决可伸缩性问题"><a href="#解决可伸缩性问题" class="headerlink" title="解决可伸缩性问题"></a>解决可伸缩性问题</h3><p>在 Hadoop MapReduce 中，JobTracker 具有两种不同的职责：</p>
+<ul>
+<li>管理集群中的计算资源，这涉及到维护活动节点列表、可用和占用的 map 和 reduce slots 列表，以及依据所选的调度策略将可用 slots 分配给合适的作业和任务</li>
+<li>协调在集群上运行的所有任务，这涉及到指导 TaskTracker 启动 map 和 reduce 任务，监视任务的执行，重新启动失败的任务，推测性地运行缓慢的任务，计算作业计数器值的总和，等等</li>
+</ul>
+<p>为单个进程安排大量职责会导致重大的可伸缩性问题，尤其是在较大的集群上，JobTracker 必须不断跟踪数千个 TaskTracker、数百个作业，以及数万个 map 和 reduce 任务。下图演示了这一问题。相反，TaskTracker 通常近运行十来个任务，这些任务由勤勉的 JobTracker 分配给它们。</p>
+<p>大型 Apache Hadoop 集群 (MRv1) 上繁忙的 JobTracker<br><img src="http://img.i.liebao.cn/assets/images/2d84018e9ce14b62f04cb9cdeab94151.png" alt=""></p>
+<p>为了解决可伸缩性问题，一个简单而又绝妙的想法应运而生：我们减少了单个 JobTracker 的职责，将部分职责委派给 TaskTracker，因为集群中有许多 TaskTracker。在新设计中，这个概念通过将 JobTracker 的双重职责（集群资源管理和任务协调）分开为两种不同类型的进程来反映。</p>
+<p>不再拥有单个 JobTracker，一种新方法引入了一个集群管理器，它惟一的职责就是跟踪集群中的活动节点和可用资源，并将它们分配给任务。对于提交给集群的每个作业，会启动一个专用的、短暂的 JobTracker 来控制该作业中的任务的执行。有趣的是，短暂的 JobTracker 由在从属节点上运行的 TaskTracker 启动。因此，作业的生命周期的协调工作分散在集群中所有可用的机器上。得益于这种行为，更多工作可并行运行，可伸缩性得到了显著提高。</p>
 <hr>
 <h2 id="Pig"><a href="#Pig" class="headerlink" title="Pig"></a>Pig</h2><p>pache Pig也是Hadoop框架中的一部分，Pig提供类SQL语言（Pig Latin）通过MapReduce来处理大规模半结构化数据。而Pig Latin是更高级的过程语言，通过将MapReduce中的设计模式抽象为操作，如Filter，GroupBy，Join，OrderBy，由这些操作组成有向无环图（DAG）。</p>
 <p><code>visits             = load ‘/data/visits’ as (user, url, time);</code><br><code>gVisits          = group visits by url;</code><br><code>visitCounts  = foreach gVisits generate url, count(visits);</code></p>
@@ -381,7 +420,77 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
 <p><code>store topUrls into ‘/data/topUrls’;</code></p>
 <p>而Pig Latin又是通过编译为MapReduce，在Hadoop集群上执行的。上述程序被编译成MapReduce时，会产生如下图所示的Map和Reduce：<br><img src="https://pic3.zhimg.com/27f938d43e54be4eba91c7899daa3bca_b.jpg" alt=""><br>Apache Pig解决了MapReduce存在的大量手写代码，语义隐藏，提供操作种类少的问题。类似的项目还有Cascading，JAQL等。</p>
 <hr>
-<h2 id="Tez"><a href="#Tez" class="headerlink" title="Tez"></a>Tez</h2><h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2>
+<h2 id="Tez"><a href="#Tez" class="headerlink" title="Tez"></a>Tez</h2><h2 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h2><h2 id="HDFS架构"><a href="#HDFS架构" class="headerlink" title="HDFS架构"></a>HDFS架构</h2><p><a href="http://www.lai18.com/content/461027.html" target="_blank" rel="external">http://www.lai18.com/content/461027.html</a></p>
+<p><img src="http://img.i.liebao.cn/assets/images/13b0361a33f775088edec846be8eff51.png" alt=""><br>如上图所示HDFS是Master和Slave的结构，分为NameNode、Secondary NameNode和DataNode三种角色。</p>
+<ul>
+<li><p>NameNode：在Hadoop1.X中只有一个Master节点，管理HDFS的名称空间和数据块映射信息、配置副本策略和处理客户端请求；</p>
+</li>
+<li><p>Secondary NameNode：辅助NameNode，分担NameNode工作，定期合并fsimage和fsedits并推送给NameNode，紧急情况下可辅助恢复NameNode；</p>
+</li>
+<li><p>DataNode：Slave节点，实际存储数据、执行数据块的读写并汇报存储信息给NameNode；<br>hdfs 读操作<br><img src="http://img.i.liebao.cn/assets/images/b99480e5023049c3b3f5676f0401801d.png" alt=""><br>客户端通过调用FileSystem对象的open()方法来打开希望读取的文件，对于HDFS来说，这个对象时分布文件系统的一个实例；</p>
+</li>
+</ul>
+<p>DistributedFileSystem通过使用RPC来调用NameNode以确定文件起始块的位置，同一Block按照重复数会返回多个位置，这些位置按照Hadoop集群拓扑结构排序，距离客户端近的排在前面；</p>
+<p>前两步会返回一个FSDataInputStream对象，该对象会被封装成DFSInputStream对象，DFSInputStream可以方便的管理datanode和namenode数据流，客户端对这个输入流调用read()方法；</p>
+<p>存储着文件起始块的DataNode地址的DFSInputStream随即连接距离最近的DataNode，通过对数据流反复调用read()方法，可以将数据从DataNode传输到客户端；</p>
+<p>到达块的末端时，DFSInputStream会关闭与该DataNode的连接，然后寻找下一个块的最佳DataNode，这些操作对客户端来说是透明的，客户端的角度看来只是读一个持续不断的流；</p>
+<p>一旦客户端完成读取，就对FSDataInputStream调用close()方法关闭文件读取。</p>
+<p>hdfs 写操作<br><img src="http://img.i.liebao.cn/assets/images/5b6ad55670203a164fe9b73127c6f9f2.png" alt=""></p>
+<p>客户端通过调用DistributedFileSystem的create()方法创建新文件；</p>
+<p>DistributedFileSystem通过RPC调用NameNode去创建一个没有Blocks关联的新文件，创建前NameNode会做各种校验，比如文件是否存在、客户端有无权限去创建等。如果校验通过，NameNode会为创建新文件记录一条记录，否则就会抛出IO异常；</p>
+<p>前两步结束后会返回FSDataOutputStream的对象，和读文件的时候相似，FSDataOutputStream被封装成DFSOutputStream，DFSOutputStream可以协调NameNode和Datanode。客户端开始写数据到DFSOutputStream，DFSOutputStream会把数据切成一个个小的数据包，并写入内部队列称为“数据队列”(Data Queue)；</p>
+<p>DataStreamer会去处理接受Data Queue，它先问询NameNode这个新的Block最适合存储的在哪几个DataNode里，比如重复数是3，那么就找到3个最适合的DataNode，把他们排成一个pipeline.DataStreamer把Packet按队列输出到管道的第一个Datanode中，第一个DataNode又把Packet输出到第二个DataNode中，以此类推；</p>
+<p>DFSOutputStream还有一个对列叫Ack Quene，也是有Packet组成，等待DataNode的收到响应，当Pipeline中的所有DataNode都表示已经收到的时候，这时Akc Quene才会把对应的Packet包移除掉；</p>
+<p>客户端完成写数据后调用close()方法关闭写入流；</p>
+<p>DataStreamer把剩余的包都刷到Pipeline里然后等待Ack信息，收到最后一个Ack后，通知NameNode把文件标示为已完成。</p>
+<h2 id="Yarn"><a href="#Yarn" class="headerlink" title="Yarn"></a>Yarn</h2><p>以下名称的改动有助于更好地了解 YARN 的设计：</p>
+<ul>
+<li>ResourceManager 代替集群管理器</li>
+<li>ApplicationMaster 代替一个专用且短暂的 JobTracker</li>
+<li>NodeManager 代替 TaskTracker</li>
+<li>一个分布式应用程序代替一个 MapReduce 作业</li>
+</ul>
+<p><img src="http://img.i.liebao.cn/assets/images/f4b1442866ed0114866aa6ea98c6a0f4.png" alt="Yarn架构"></p>
+<p><img src="http://img.i.liebao.cn/assets/images/303d9530e8653dba1b3a4210c624981d.png" alt="官方配图"></p>
+<p>在 YARN 架构中，一个全局 ResourceManager 以主要后台进程的形式运行，它通常在专用机器上运行，在各种竞争的应用程序之间仲裁可用的集群资源。ResourceManager 会追踪集群中有多少可用的活动节点和资源，协调用户提交的哪些应用程序应该在何时获取这些资源。ResourceManager 是惟一拥有此信息的进程，所以它可通过某种共享的、安全的、多租户的方式制定分配（或者调度）决策（例如，依据应用程序优先级、队列容量、ACLs、数据位置等）。</p>
+<p>在用户提交一个应用程序时，一个称为 ApplicationMaster 的轻量型进程实例会启动来协调应用程序内的所有任务的执行。这包括监视任务，重新启动失败的任务，推测性地运行缓慢的任务，以及计算应用程序计数器值的总和。这些职责以前分配给所有作业的单个 JobTracker。ApplicationMaster 和属于它的应用程序的任务，在受 NodeManager 控制的资源容器中运行。</p>
+<p>NodeManager 是 TaskTracker 的一种更加普通和高效的版本。没有固定数量的 map 和 reduce slots，NodeManager 拥有许多动态创建的资源容器。容器的大小取决于它所包含的资源量，比如内存、CPU、磁盘和网络 IO。目前，仅支持内存和 CPU (YARN-3)。未来可使用 cgroups 来控制磁盘和网络 IO。一个节点上的容器数量，由配置参数与专用于从属后台进程和操作系统的资源以外的节点资源总量（比如总 CPU 数和总内存）共同决定。</p>
+<p>有趣的是，ApplicationMaster 可在容器内运行任何类型的任务。例如，MapReduce ApplicationMaster 请求一个容器来启动 map 或 reduce 任务，而 Giraph ApplicationMaster 请求一个容器来运行 Giraph 任务。您还可以实现一个自定义的 ApplicationMaster 来运行特定的任务，进而发明出一种全新的分布式应用程序框架，改变大数据世界的格局。您可以查阅 Apache Twill，它旨在简化 YARN 之上的分布式应用程序的编写。<br>在 YARN 中，MapReduce 降级为一个分布式应用程序的一个角色（但仍是一个非常流行且有用的角色），现在称为 MRv2。MRv2 是经典 MapReduce 引擎（现在称为 MRv1）的重现，运行在 YARN 之上。</p>
+<hr>
+<h3 id="Yarn的应用程序提交"><a href="#Yarn的应用程序提交" class="headerlink" title="Yarn的应用程序提交"></a>Yarn的应用程序提交</h3><p>在应用程序提交到 YARN 集群时，ResourceManager、ApplicationMaster、NodeManagers 和容器如何相互交互。下图显示了一个例子。<br><img src="http://img.i.liebao.cn/assets/images/63741e71c0851c7670439297fa2fb21c.png" alt=""><br>假设用户采用与 MRv1 中相同的方式键入 hadoop jar 命令，将应用程序提交到 ResourceManager。ResourceManager 维护在集群上运行的应用程序列表，以及每个活动的 NodeManager 上的可用资源列表。ResourceManager 需要确定哪个应用程序接下来应该获得一部分集群资源。该决策受到许多限制，比如队列容量、ACL 和公平性。ResourceManager 使用一个可插拔的 Scheduler。Scheduler 仅执行调度；它管理谁在何时获取集群资源（以容器的形式），但不会对应用程序内的任务执行任何监视，所以它不会尝试重新启动失败的任务。</p>
+<p>在 ResourceManager 接受一个新应用程序提交时，Scheduler 制定的第一个决策是选择将用来运行 ApplicationMaster 的容器。在 ApplicationMaster 启动后，它将负责此应用程序的整个生命周期。首先也是最重要的是，它将资源请求发送到 ResourceManager，请求运行应用程序的任务所需的容器。资源请求是对一些容器的请求，用以满足一些资源需求，比如：</p>
+<ul>
+<li>一定量的资源，目前使用 MB 内存和 CPU 份额来表示</li>
+<li>一个首选的位置，由主机名、机架名称指定，或者使用 * 来表示没有偏好</li>
+<li>此应用程序中的一个优先级，而不是跨多个应用程序</li>
+</ul>
+<p>如果可能的话，ResourceManager 会分配一个满足 ApplicationMaster 在资源请求中所请求的需求的容器（表达为容器 ID 和主机名）。该容器允许应用程序使用特定主机上给定的资源量。分配一个容器后，ApplicationMaster 会要求 NodeManager（管理分配容器的主机）使用这些资源来启动一个特定于应用程序的任务。此任务可以是在任何框架中编写的任何进程（比如一个 MapReduce 任务或一个 Giraph 任务）。NodeManager 不会监视任务；它仅监视容器中的资源使用情况，举例而言，如果一个容器消耗的内存比最初分配的更多，它会结束该容器。</p>
+<p>ApplicationMaster 会竭尽全力协调容器，启动所有需要的任务来完成它的应用程序。它还监视应用程序及其任务的进度，在新请求的容器中重新启动失败的任务，以及向提交应用程序的客户端报告进度。应用程序完成后，ApplicationMaster 会关闭自己并释放自己的容器。</p>
+<p>尽管 ResourceManager 不会对应用程序内的任务执行任何监视，但它会检查 ApplicationMaster 的健康状况。如果 ApplicationMaster 失败，ResourceManager 可在一个新容器中重新启动它。您可以认为 ResourceManager 负责管理 ApplicationMaster，而 ApplicationMasters 负责管理任务。</p>
+<h3 id="新Hadoop-Yarn-框架比对"><a href="#新Hadoop-Yarn-框架比对" class="headerlink" title="新Hadoop Yarn 框架比对"></a>新Hadoop Yarn 框架比对</h3><p>让我们来对新旧 MapReduce 框架做详细的分析和对比，可以看到有以下几点显著变化：</p>
+<ol>
+<li><p>首先客户端不变，其调用 API 及接口大部分保持兼容，这也是为了对开发使用者透明化，使其不必对原有代码做大的改变 ( 详见 2.3 Demo 代码开发及详解)，但是原框架中核心的 JobTracker 和 TaskTracker 不见了，取而代之的是 ResourceManager, ApplicationMaster 与 NodeManager 三个部分。</p>
+</li>
+<li><p>我们来详细解释这三个部分，首先 ResourceManager 是一个中心的服务，它做的事情是调度、启动每一个 Job 所属的 ApplicationMaster、另外监控 ApplicationMaster 的存在情况。细心的读者会发现：Job 里面所在的 task 的监控、重启等等内容不见了。这就是 AppMst 存在的原因。ResourceManager 负责作业与资源的调度。接收 JobSubmitter 提交的作业，按照作业的上下文 (Context) 信息，以及从 NodeManager 收集来的状态信息，启动调度过程，分配一个 Container 作为 App Mstr</p>
+</li>
+<li><p>NodeManager 功能比较专一，就是负责 Container 状态的维护，并向 RM 保持心跳。</p>
+</li>
+<li><p>ApplicationMaster 负责一个 Job 生命周期内的所有工作，类似老的框架中 JobTracker。但注意每一个 Job（不是每一种）都有一个 ApplicationMaster，它可以运行在 ResourceManager 以外的机器上。</p>
+</li>
+</ol>
+<p>Yarn 框架相对于老的 MapReduce 框架什么优势呢？我们可以看到：</p>
+<ul>
+<li>这个设计大大减小了 JobTracker（也就是现在的 ResourceManager）的资源消耗，并且让监测每一个 Job 子任务 (tasks) 状态的程序分布式化了，更安全、更优美。</li>
+<li>在新的 Yarn 中，ApplicationMaster 是一个可变更的部分，用户可以对不同的编程模型写自己的 AppMst，让更多类型的编程模型能够跑在 Hadoop 集群中，可以参考 hadoop Yarn 官方配置模板中的 mapred-site.xml 配置。</li>
+<li>对于资源的表示以内存为单位 ( 在目前版本的 Yarn 中，没有考虑 cpu 的占用 )，比之前以剩余 slot 数目更合理。</li>
+<li>老的框架中，JobTracker 一个很大的负担就是监控 job 下的 tasks 的运行状况，现在，这个部分就扔给 ApplicationMaster 做了，而 ResourceManager 中有一个模块叫做 ApplicationsMasters( 注意不是 ApplicationMaster)，它是监测 ApplicationMaster 的运行状况，如果出问题，会将其在其他机器上重启。</li>
+<li>Container 是 Yarn 为了将来作资源隔离而提出的一个框架。这一点应该借鉴了 Mesos 的工作，目前是一个框架，仅仅提供 java 虚拟机内存的隔离 ,hadoop 团队的设计思路应该后续能支持更多的资源调度和控制 , 既然资源表示成内存量，那就没有了之前的 map slot/reduce slot 分开造成集群资源闲置的尴尬情况。</li>
+</ul>
+<h3 id="新旧-Hadoop-框架配置项变化表"><a href="#新旧-Hadoop-框架配置项变化表" class="headerlink" title="新旧 Hadoop 框架配置项变化表"></a>新旧 Hadoop 框架配置项变化表</h3><p><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>Hadoop 新 MapReduce 框架 Yarn 详解<br><a href="https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/" target="_blank" rel="external">https://www.ibm.com/developerworks/cn/opensource/os-cn-hadoop-yarn/</a></p>
+<p>YARN 简介<br><a href="http://www.ibm.com/developerworks/cn/data/library/bd-yarn-intro/" target="_blank" rel="external">http://www.ibm.com/developerworks/cn/data/library/bd-yarn-intro/</a></p>
+<p><a href="https://www.zhihu.com/question/26568496" target="_blank" rel="external">https://www.zhihu.com/question/26568496</a></p>
+
       
     </div>
 
@@ -413,6 +522,10 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/08/31/linux-问题集锦-1/" rel="prev" title="linux问题集锦">
+                linux问题集锦 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -438,7 +551,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/08/29/hadoop-3-hadoop原理/"
-           data-title="hadoop原理" data-url="http://wangzhenhui1991.github.io/2016/08/29/hadoop-3-hadoop原理/">
+           data-title="hadoop,yarn,spark,pig,Tez原理" data-url="http://wangzhenhui1991.github.io/2016/08/29/hadoop-3-hadoop原理/">
       </div>
     
   </div>
@@ -483,7 +596,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -491,7 +604,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -500,7 +613,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -549,7 +662,7 @@ MapReduce，通过简单的Mapper和Reducer的抽象提供一个编程模型，�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HadHadoop"><span class="nav-number">1.</span> <span class="nav-text">HadHadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pig"><span class="nav-number">2.</span> <span class="nav-text">Pig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tez"><span class="nav-number">3.</span> <span class="nav-text">Tez</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark"><span class="nav-number">4.</span> <span class="nav-text">Spark</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hadoop"><span class="nav-number">1.</span> <span class="nav-text">Hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Apache-Hadoop-简介"><span class="nav-number">1.1.</span> <span class="nav-text">Apache Hadoop 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop的黄金时代"><span class="nav-number">1.2.</span> <span class="nav-text">Hadoop的黄金时代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HDFS"><span class="nav-number">1.3.</span> <span class="nav-text">HDFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MapReduce"><span class="nav-number">1.4.</span> <span class="nav-text">MapReduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hadoop架构"><span class="nav-number">1.5.</span> <span class="nav-text">hadoop架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop的改进-局限-不足"><span class="nav-number">1.6.</span> <span class="nav-text">Hadoop的改进/局限/不足</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决可伸缩性问题"><span class="nav-number">1.7.</span> <span class="nav-text">解决可伸缩性问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pig"><span class="nav-number">2.</span> <span class="nav-text">Pig</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tez"><span class="nav-number">3.</span> <span class="nav-text">Tez</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark"><span class="nav-number">4.</span> <span class="nav-text">Spark</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS架构"><span class="nav-number">5.</span> <span class="nav-text">HDFS架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Yarn"><span class="nav-number">6.</span> <span class="nav-text">Yarn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Yarn的应用程序提交"><span class="nav-number">6.1.</span> <span class="nav-text">Yarn的应用程序提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新Hadoop-Yarn-框架比对"><span class="nav-number">6.2.</span> <span class="nav-text">新Hadoop Yarn 框架比对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新旧-Hadoop-框架配置项变化表"><span class="nav-number">6.3.</span> <span class="nav-text">新旧 Hadoop 框架配置项变化表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">7.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>

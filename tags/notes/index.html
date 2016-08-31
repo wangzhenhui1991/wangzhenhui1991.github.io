@@ -84,19 +84,15 @@
 
 
 
-<meta name="description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
-newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JVM内存区域与内存溢出异常">
-<meta property="og:url" content="http://wangzhenhui1991.github.io/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/index.html">
+<meta name="description" content="coder|dotaer|lazer">
+<meta property="og:type" content="website">
+<meta property="og:title" content="王振辉">
+<meta property="og:url" content="http://wangzhenhui1991.github.io/tags/notes/index.html">
 <meta property="og:site_name" content="王振辉">
-<meta property="og:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
-newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
-<meta property="og:updated_time" content="2016-07-06T06:29:29.735Z">
+<meta property="og:description" content="coder|dotaer|lazer">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM内存区域与内存溢出异常">
-<meta name="twitter:description" content="java内存区域与内存溢出异常运行时数据区域1. 程序计数器2. java虚拟机栈3. 本地方法栈4. java堆5. 方法区6. 直接内存JVM(HotSpot)对象创建过程###　1. 对象的创建
-newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例数据Instance Data对齐填充Padding3. 对象的访问定位">
+<meta name="twitter:title" content="王振辉">
+<meta name="twitter:description" content="coder|dotaer|lazer">
 
 
 
@@ -114,7 +110,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
   };
 </script>
 
-  <title> JVM内存区域与内存溢出异常 | 王振辉 </title>
+  <title> 标签: notes | 王振辉 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -135,7 +131,7 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
     
   
 
-  <div class="container one-collumn sidebar-position-right page-post-detail ">
+  <div class="container one-collumn sidebar-position-right  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -256,157 +252,46 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                JVM内存区域与内存溢出异常
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-02T15:57:51+08:00" content="2016-06-02">
-              2016-06-02
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
-                    <span itemprop="name">自动内存管理机制</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        notes
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/08/31/linux-问题集锦-1/" itemprop="url">
+              
+                <span itemprop="name">linux问题集锦</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-31T15:08:51+08:00"
+              content="2016-08-31" >
+          08-31
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/06/02/fcm算法/" rel="next" title="fcm算法">
-                <i class="fa fa-chevron-left"></i> fcm算法
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/15/hadoop-1-安装配置/" rel="prev" title="hadoop在opensuse13.2下安装配置">
-                hadoop在opensuse13.2下安装配置 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
+    
   </div>
+
+  
 
 
           </div>
@@ -414,14 +299,6 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/"
-           data-title="JVM内存区域与内存溢出异常" data-url="http://wangzhenhui1991.github.io/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -441,17 +318,8 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -521,17 +389,6 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#运行时数据区域"><span class="nav-number">1.1.</span> <span class="nav-text">运行时数据区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-程序计数器"><span class="nav-number">1.2.</span> <span class="nav-text">1. 程序计数器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-java虚拟机栈"><span class="nav-number">1.3.</span> <span class="nav-text">2. java虚拟机栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-本地方法栈"><span class="nav-number">1.4.</span> <span class="nav-text">3. 本地方法栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-java堆"><span class="nav-number">1.5.</span> <span class="nav-text">4. java堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-方法区"><span class="nav-number">1.6.</span> <span class="nav-text">5. 方法区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-直接内存"><span class="nav-number">1.7.</span> <span class="nav-text">6. 直接内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM-HotSpot-对象创建过程"><span class="nav-number">1.8.</span> <span class="nav-text">JVM(HotSpot)对象创建过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new"><span class="nav-number">1.8.1.</span> <span class="nav-text">new</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#init"><span class="nav-number">1.8.2.</span> <span class="nav-text">init</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对象的内存分布"><span class="nav-number">1.9.</span> <span class="nav-text">2. 对象的内存分布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象头Header"><span class="nav-number">1.9.1.</span> <span class="nav-text">对象头Header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Mark-Word"><span class="nav-number">1.9.2.</span> <span class="nav-text">1. Mark Word</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-类型指针"><span class="nav-number">1.9.3.</span> <span class="nav-text">2. 类型指针</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实例数据Instance-Data"><span class="nav-number">1.9.4.</span> <span class="nav-text">实例数据Instance Data</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对齐填充Padding"><span class="nav-number">1.9.5.</span> <span class="nav-text">对齐填充Padding</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对象的访问定位"><span class="nav-number">1.10.</span> <span class="nav-text">3. 对象的访问定位</span></a></li></ol></li></ol></div>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -629,10 +486,6 @@ newinit2. 对象的内存分布对象头Header1. Mark Word2. 类型指针实例�
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 

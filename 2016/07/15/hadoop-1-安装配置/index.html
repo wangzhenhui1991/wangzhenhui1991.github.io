@@ -98,7 +98,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
 sshd守护进程
 
 Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理器。s">
-<meta property="og:updated_time" content="2016-08-29T07:13:42.194Z">
+<meta property="og:updated_time" content="2016-08-31T13:24:07.618Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop在opensuse13.2下安装配置">
 <meta name="twitter:description" content="Hadoop 2.7.2
@@ -363,8 +363,9 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
 <hr>
 <p><strong>生成密钥,省的每次都要输入密码</strong><br>ssh无密码登录，生成ssh-keygen：</p>
 <p><code>cd ~/.ssh/            #切换到本机密钥文件夹中</code><br><code>ssh-keygen -t rsa        #生成本机密钥</code><br><code>cat ./id_rsa.pub &gt;&gt; ./authorized_keys    #将本机的密钥加入到授权文件中</code></p>
-<h3 id="1-2-java"><a href="#1-2-java" class="headerlink" title="1.2 java"></a>1.2 java</h3><p>因为本机之前安装过java，这里 如果忘记的安装路径的话，通过以下几个命令查看jdk安装信息</p>
+<h3 id="1-2-java环境"><a href="#1-2-java环境" class="headerlink" title="1.2 java环境"></a>1.2 java环境</h3><p>因为本机之前安装过java，这里 如果忘记的安装路径的话，通过以下几个命令查看jdk安装信息</p>
 <p><code>java -version</code><br><code>whereis java</code><br><code>which java   #java 执行路径</code><br><code>echo $JAVA_HOME</code><br><code>echo $PATH</code></p>
+<p>后来发现openSUSE13.2预装的是jre，并没有jdk，所以还得重新安装一下jdk。</p>
 <h2 id="2-Hadoop安装配置"><a href="#2-Hadoop安装配置" class="headerlink" title="2.Hadoop安装配置"></a>2.Hadoop安装配置</h2><p>可以参考<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" rel="external">hadoop安装官方教程</a></p>
 <h3 id="2-1-下载hadoop-2-7-2-tar-gz"><a href="#2-1-下载hadoop-2-7-2-tar-gz" class="headerlink" title="2.1 下载hadoop-2.7.2.tar.gz"></a>2.1 <strong>下载hadoop-2.7.2.tar.gz</strong></h3><p>解压到目录</p>
 <p>   <code>tar -zxf hadoop-2.7.2.tar.gz      #本例放到了/home/wzh/hadoop下</code></p>
@@ -378,6 +379,40 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
 </li>
 </ul>
 <p>将刚才那些直接添加进去，保存，我们发现就可以在任意文件位置使用hadoop和hdfs了。</p>
+<h2 id="3-Hadoop初步实践"><a href="#3-Hadoop初步实践" class="headerlink" title="3.Hadoop初步实践"></a>3.Hadoop初步实践</h2><h3 id="3-1单节点模式-Local-Standalone-Mode"><a href="#3-1单节点模式-Local-Standalone-Mode" class="headerlink" title="3.1单节点模式-Local(Standalone) Mode"></a>3.1单节点模式-Local(Standalone) Mode</h3><p>Hadoop 默认模式为非分布式模式，无需进行其他配置即可运行。非分布式即单 Java 进程，方便进行调试。<br>Hadoop/share中有许多例子可以运行，#可以查看这个jar包中有哪些程序-ex:wordcount,terasort,join,grep<br><code>$ hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-2.**.jar</code></p>
+<p><strong>例：</strong><br>以grep(查找字符串)为例,我们将input文件夹中所有文件作为输入，筛选当中符合正则表达式dfs[a-z.]+的单词并统计出现的次数，将结果输出到output文件夹中。<br>跳到hadoop目录下<br><code>$    cd /home/wzh/hadoop/hadoop_2.7.0</code></p>
+<p>创建一个input文件夹<br><code>$    mkdir ./input</code></p>
+<p>将./etc/hadoop目录下的文件复制到input文件夹中<br><code>$    cp ./etc/hadoop/*.xml ./input</code></p>
+<p>hadoop jar 运行hadoop jar包程序，grep程序，输入是./input，输出到./output<br><code>$    hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar grep ./input ./output &#39;dfs[a-z.]+&#39;</code></p>
+<p>输出./output中的内容<br><code>$    cat ./output/*</code></p>
+<p>注意,这个案例如果需要再次运行，则需要删除output文件夹，因为hadoop默认不覆盖结果文件<br><code>$    rm -r ./output</code></p>
+<hr>
+<h3 id="3-2伪分布模式-Pseudo-Distributed-Mode"><a href="#3-2伪分布模式-Pseudo-Distributed-Mode" class="headerlink" title="3.2伪分布模式-Pseudo-Distributed Mode"></a>3.2伪分布模式-Pseudo-Distributed Mode</h3><p>Hadoop 可以在单节点上以伪分布式的方式运行，与standalone不同的是，Hadoop 进程以分离的 Java 进程来运行，节点既作为 NameNode 也作为 DataNode，同时，读取的是 HDFS 中的文件。</p>
+<p>Hadoop 的配置文件位于 ./hadoop/etc/hadoop/中，配置伪分布我们需要配置<strong>core-site.xml</strong>和<strong>hdfs-site.xml</strong>。</p>
+<h4 id="配置core-site-xml"><a href="#配置core-site-xml" class="headerlink" title="配置core-site.xml"></a>配置core-site.xml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">             &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line">             &lt;value&gt;file:/usr/local/hadoop/tmp&lt;/value&gt;</span><br><span class="line">             &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">             &lt;name&gt;fs.defaultFS&lt;/name&gt;</span><br><span class="line">             &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>若没有配置 hadoop.tmp.dir 参数，则默认使用的临时目录为 /tmp/hadoo-hadoop，而这个目录在重启时有可能被系统清理掉，导致必须重新执行 format 才行。</p>
+<h4 id="配置hdfs-site-xml"><a href="#配置hdfs-site-xml" class="headerlink" title="配置hdfs-site.xml"></a>配置hdfs-site.xml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">             &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line">             &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">             &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line">             &lt;value&gt;file:/usr/local/hadoop/tmp/dfs/name&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">             &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</span><br><span class="line">             &lt;value&gt;file:/usr/local/hadoop/tmp/dfs/data&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>伪分布式虽然只需要配置 fs.defaultFS 和 dfs.replication 就可以运行（官方教程如此），但是若没有设置hadoop.tmp.dir 参数，和dfs.namenode.name.dir 和 dfs.datanode.data.dir，否则在接下来的步骤中可能会出错。</p>
+<h4 id="NameNode格式化"><a href="#NameNode格式化" class="headerlink" title="NameNode格式化"></a>NameNode格式化</h4><p><code>$    hdfs namenode -format</code></p>
+<h4 id="启动NameNode和DataNode的守护进程"><a href="#启动NameNode和DataNode的守护进程" class="headerlink" title="启动NameNode和DataNode的守护进程"></a>启动NameNode和DataNode的守护进程</h4><p><code>$ ./sbin/start-dfs.sh</code><br>此步骤若之前的ssh免密码登录没有配置好,则会需要用户多次输入密码.</p>
+<h4 id="查看"><a href="#查看" class="headerlink" title="查看"></a>查看</h4><ul>
+<li>使用jdk工具jps命令来查看是否启动成功,会显示SecondaryNameNode,NameNode和DataNode<br><code>$ jps</code></li>
+<li>也可以打开浏览器访问<a href="http://localhost:50070" target="_blank" rel="external">http://localhost:50070</a> 来查看信息</li>
+</ul>
+<h4 id="运行示例"><a href="#运行示例" class="headerlink" title="运行示例"></a>运行示例</h4><p><code>hdfs dfs -mkdir -p /user/root</code><br><code>hdfs dfs -mkdir input</code><br><code>hdfs dfs -put ./etc/hadoop/*.xml input</code><br><code>hdfs dfs -ls input</code><br><code>hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar gerp  input output &#39;dfs[a-z.]+&#39;</code><br><code>hdfs dfs -cat output</code></p>
+<h3 id="3-3伪分布模式的Yarn启动"><a href="#3-3伪分布模式的Yarn启动" class="headerlink" title="3.3伪分布模式的Yarn启动"></a>3.3伪分布模式的Yarn启动</h3><p>YARN 主要是为集群提供更好的资源管理与任务调度，然而这在单机上体现不出价值，反而会使程序跑得稍慢些。因此在单机上是否开启 YARN 就看实际情况了。</p>
+<h4 id="配置marped-site-xml"><a href="#配置marped-site-xml" class="headerlink" title="配置marped-site.xml"></a>配置marped-site.xml</h4><p>注意只要marped-site.xml存在，hadoop就会以yarn的方式启动，所以如果不想启动yarn，需要将marped-site.xml删除或更名成marped-site.xml.template。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">        &lt;property&gt;</span><br><span class="line">             &lt;name&gt;mapreduce.framework.name&lt;/name&gt;</span><br><span class="line">             &lt;value&gt;yarn&lt;/value&gt;</span><br><span class="line">        &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure></p>
+<h4 id="配置yarn-site-xml"><a href="#配置yarn-site-xml" class="headerlink" title="配置yarn-site.xml"></a>配置yarn-site.xml</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt;</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;</span><br><span class="line">        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">    &lt;!---下面这个部分解决了启动Connecting to ResourceManager at 0.0.0.0:8032的文婷--&gt;</span><br><span class="line">    &lt;property&gt;</span><br><span class="line">		&lt;name&gt;yarn.resourcemanager.address&lt;/name&gt;</span><br><span class="line">		&lt;value&gt;127.0.0.1:8032&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">		&lt;name&gt;yarn.resourcemanager.scheduler.address&lt;/name&gt;</span><br><span class="line">		&lt;value&gt;127.0.0.1:8030&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line">	&lt;property&gt;</span><br><span class="line">		&lt;name&gt;yarn.resourcemanager.resource-tracker.address&lt;/name&gt;</span><br><span class="line">		&lt;value&gt;127.0.0.1:8031&lt;/value&gt;</span><br><span class="line">	&lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="启动-关闭yarn和historyserver"><a href="#启动-关闭yarn和historyserver" class="headerlink" title="启动/关闭yarn和historyserver"></a>启动/关闭yarn和historyserver</h4><p>启动yarn<br><code>./sbin/start-yarn.sh</code><br>启动history<br><code>./sbin/mr-jobhistory-daemon.sh start historyserver</code><br>关闭yarn<br><code>./sbin/stop-yarn.sh</code><br>关闭history<br><code>./sbin/mr-jobhistory-daemon.sh stop historyserver</code></p>
+<h4 id="查看-1"><a href="#查看-1" class="headerlink" title="查看"></a>查看</h4><ul>
+<li>还是jps查看是否启动<br><code>jps</code></li>
+<li>或是浏览器访问<a href="http://localhost:8088" target="_blank" rel="external">http://localhost:8088</a></li>
+</ul>
+<h4 id="运行示例-1"><a href="#运行示例-1" class="headerlink" title="运行示例"></a>运行示例</h4><p>这部分理论上基本参考伪分布运行示例的步骤，只是多了开启yarn和history的过程。<br>但是！！！！<br>1.安装官方配置过程，会遇到    <em>Connecting to ResourceManager at 0.0.0.0:8032 failed</em> 的问题<br>2.即使解决了 <em>Connecting to ResourceManager at 0.0.0.0:8032 failed</em>的问题(配置yarn-site.xml)，缺卡在了Running job的程序上。</p>
+<h3 id="3-4完全分布模式-Fully-Distributed-Mode"><a href="#3-4完全分布模式-Fully-Distributed-Mode" class="headerlink" title="3.4完全分布模式-Fully-Distributed Mode"></a>3.4完全分布模式-Fully-Distributed Mode</h3><p>参考：</p>
+<p>Hadoop: Setting up a Single Node Cluster.<br><a href="https://hadoop.apache.org/docs/r2.7.2/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" rel="external">https://hadoop.apache.org/docs/r2.7.2/hadoop-project-dist/hadoop-common/SingleCluster.html</a></p>
+<p>Hadoop安装教程_单机/伪分布式配置_Hadoop2.6.0/Ubuntu14.04<br><a href="http://www.powerxing.com/install-hadoop/" target="_blank" rel="external">http://www.powerxing.com/install-hadoop/</a></p>
+<p>Hadoop Installation For Beginners - Pseudo Distributed Mode (Single Node Cluster)<br><a href="http://unmeshasreeveni.blogspot.sg/2014/04/hadoop-installation-for-beginners.html" target="_blank" rel="external">http://unmeshasreeveni.blogspot.sg/2014/04/hadoop-installation-for-beginners.html</a><br>Hadoop: Connecting to ResourceManager failed<br><a href="http://stackoverflow.com/questions/20586920/hadoop-connecting-to-resourcemanager-failed" target="_blank" rel="external">http://stackoverflow.com/questions/20586920/hadoop-connecting-to-resourcemanager-failed</a></p>
 
       
     </div>
@@ -402,8 +437,8 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/02/fcm算法/" rel="next" title="fcm算法">
-                <i class="fa fa-chevron-left"></i> fcm算法
+              <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" rel="next" title="JVM内存区域与内存溢出异常">
+                <i class="fa fa-chevron-left"></i> JVM内存区域与内存溢出异常
               </a>
             
           </div>
@@ -484,7 +519,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -492,7 +527,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -501,7 +536,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -550,7 +585,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前提准备"><span class="nav-number">1.</span> <span class="nav-text">1.前提准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-ssh-集群、单节点模式都需要用到-ssh-登陆"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 ssh-集群、单节点模式都需要用到 ssh 登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-java"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Hadoop安装配置"><span class="nav-number">2.</span> <span class="nav-text">2.Hadoop安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-下载hadoop-2-7-2-tar-gz"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 下载hadoop-2.7.2.tar.gz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-配置hadoop到path中"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 配置hadoop到path中</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-前提准备"><span class="nav-number">1.</span> <span class="nav-text">1.前提准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-ssh-集群、单节点模式都需要用到-ssh-登陆"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 ssh-集群、单节点模式都需要用到 ssh 登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-java环境"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 java环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Hadoop安装配置"><span class="nav-number">2.</span> <span class="nav-text">2.Hadoop安装配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-下载hadoop-2-7-2-tar-gz"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 下载hadoop-2.7.2.tar.gz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-配置hadoop到path中"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 配置hadoop到path中</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Hadoop初步实践"><span class="nav-number">3.</span> <span class="nav-text">3.Hadoop初步实践</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1单节点模式-Local-Standalone-Mode"><span class="nav-number">3.1.</span> <span class="nav-text">3.1单节点模式-Local(Standalone) Mode</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2伪分布模式-Pseudo-Distributed-Mode"><span class="nav-number">3.2.</span> <span class="nav-text">3.2伪分布模式-Pseudo-Distributed Mode</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置core-site-xml"><span class="nav-number">3.2.1.</span> <span class="nav-text">配置core-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置hdfs-site-xml"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置hdfs-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NameNode格式化"><span class="nav-number">3.2.3.</span> <span class="nav-text">NameNode格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动NameNode和DataNode的守护进程"><span class="nav-number">3.2.4.</span> <span class="nav-text">启动NameNode和DataNode的守护进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看"><span class="nav-number">3.2.5.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行示例"><span class="nav-number">3.2.6.</span> <span class="nav-text">运行示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3伪分布模式的Yarn启动"><span class="nav-number">3.3.</span> <span class="nav-text">3.3伪分布模式的Yarn启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置marped-site-xml"><span class="nav-number">3.3.1.</span> <span class="nav-text">配置marped-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置yarn-site-xml"><span class="nav-number">3.3.2.</span> <span class="nav-text">配置yarn-site.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动-关闭yarn和historyserver"><span class="nav-number">3.3.3.</span> <span class="nav-text">启动/关闭yarn和historyserver</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看-1"><span class="nav-number">3.3.4.</span> <span class="nav-text">查看</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行示例-1"><span class="nav-number">3.3.5.</span> <span class="nav-text">运行示例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4完全分布模式-Fully-Distributed-Mode"><span class="nav-number">3.4.</span> <span class="nav-text">3.4完全分布模式-Fully-Distributed Mode</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
