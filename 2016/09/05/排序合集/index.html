@@ -85,15 +85,13 @@
 
 
 <meta name="description" content="插入排序–直接插入排序https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F
-跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。
-Java1234567891011public static void inserti">
+跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="排序合集">
 <meta property="og:url" content="http://wangzhenhui1991.github.io/2016/09/05/排序合集/index.html">
 <meta property="og:site_name" content="王振辉">
 <meta property="og:description" content="插入排序–直接插入排序https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F
-跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。
-Java1234567891011public static void inserti">
+跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/2/25/Insertion_sort_animation.gif">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Insertion-sort-example-300px.gif/220px-Insertion-sort-example-300px.gif">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif">
@@ -106,12 +104,11 @@ Java1234567891011public static void inserti">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/1/1b/Sorting_heapsort_anim.gif">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/c/cc/Merge-sort-example-300px.gif">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Merge_sort_animation2.gif/220px-Merge_sort_animation2.gif">
-<meta property="og:updated_time" content="2016-09-06T09:42:33.075Z">
+<meta property="og:updated_time" content="2016-09-12T01:37:35.565Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序合集">
 <meta name="twitter:description" content="插入排序–直接插入排序https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F
-跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。
-Java1234567891011public static void inserti">
+跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/2/25/Insertion_sort_animation.gif">
 
 
@@ -360,11 +357,9 @@ Java1234567891011public static void inserti">
 
       
         <h2 id="插入排序–直接插入排序"><a href="#插入排序–直接插入排序" class="headerlink" title="插入排序–直接插入排序"></a>插入排序–直接插入排序</h2><p><a href="https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F" target="_blank" rel="external">https://zh.wikipedia.org/wiki/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F</a></p>
-<p>跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。<br><img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Insertion_sort_animation.gif" alt=""><br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Insertion-sort-example-300px.gif/220px-Insertion-sort-example-300px.gif" alt=""></p>
-<p><strong>Java</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void insertion_sort( int[] arr ) &#123;</span><br><span class="line">    for( int i=0; i&lt;arr.length-1; i++ ) &#123;</span><br><span class="line">        for( int j=i+1; j&gt;0; j-- ) &#123;</span><br><span class="line">            if( arr[j-1] &lt;= arr[j] )</span><br><span class="line">                break;</span><br><span class="line">            int temp = arr[j];</span><br><span class="line">            arr[j] = arr[j-1];</span><br><span class="line">            arr[j-1] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>跟抓扑克牌原理一样，从混乱的牌里抓牌，每次拿起来的这张(哨兵)，按照升序/降序规则，从你已经抓在手中的牌一张一张的比较，放到应该放的地方，然后再去拿下一张。<br><img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Insertion_sort_animation.gif" alt=""><br><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0f/Insertion-sort-example-300px.gif/220px-Insertion-sort-example-300px.gif" alt=""><br><a id="more"></a><br><strong>Java</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void insertion_sort( int[] arr ) &#123;</span><br><span class="line">    for( int i=0; i&lt;arr.length-1; i++ ) &#123;</span><br><span class="line">        for( int j=i+1; j&gt;0; j-- ) &#123;</span><br><span class="line">            if( arr[j-1] &lt;= arr[j] )</span><br><span class="line">                break;</span><br><span class="line">            int temp = arr[j];</span><br><span class="line">            arr[j] = arr[j-1];</span><br><span class="line">            arr[j-1] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="插入排序–希尔排序"><a href="#插入排序–希尔排序" class="headerlink" title="插入排序–希尔排序"></a>插入排序–希尔排序</h2><p>以23, 10, 4, 1的步长序列进行希尔排序(注意黄条为i的值，起点并不是)。<br><img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Sorting_shellsort_anim.gif" alt="以23, 10, 4, 1的步长序列进行希尔排序。"><br><a href="http://bubkoo.com/2014/01/15/sort-algorithm/shell-sort/" target="_blank" rel="external">http://bubkoo.com/2014/01/15/sort-algorithm/shell-sort/</a><br><img src="http://images.cnitblog.com/blog/94031/201401/200232425474.gif" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static void shell_sort(int[] arr) &#123;</span><br><span class="line">	int gap = 1, i, j, len = arr.length;</span><br><span class="line">	int temp;</span><br><span class="line">	while (gap &lt; len / 3)</span><br><span class="line">    // &lt;O(n^(3/2)) by Knuth,1973&gt;: 1, 4, 13, 40, 121, ...</span><br><span class="line">		gap = gap * 3 + 1;</span><br><span class="line">	for (; gap &gt; 0; gap /= 3)</span><br><span class="line">		for (i = gap; i &lt; len; i++) &#123;</span><br><span class="line">			temp = arr[i];</span><br><span class="line">			for (j = i - gap; j &gt;= 0 &amp;&amp; arr[j] &gt; temp; j -= gap)</span><br><span class="line">				arr[j + gap] = arr[j];</span><br><span class="line">			arr[j + gap] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<a id="more"></a>
 <h2 id="交换排序–冒泡排序"><a href="#交换排序–冒泡排序" class="headerlink" title="交换排序–冒泡排序"></a>交换排序–冒泡排序</h2><p><img src="http://img.blog.csdn.net/20150519160550272" alt=""><br><img src="http://img.blog.csdn.net/20160401202951736?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt=""><br><strong>助记码</strong><br><img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.jpg" alt=""></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i∈[0,N-1)                //循环N-1遍</span><br><span class="line">  j∈[0,N-1-i)            //每遍循环要处理的无序部分</span><br><span class="line">    swap(j,j+1)          //两两排序（升序/降序）</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class BubbleSort &#123;</span><br><span class="line"></span><br><span class="line">	public static void bubble_sort(int[] arr) &#123;</span><br><span class="line">		int i, j, temp, len = arr.length;</span><br><span class="line">		for (i = 0; i &lt; len - 1; i++)</span><br><span class="line">			for (j = 0; j &lt; len - 1 - i; j++)</span><br><span class="line">				if (arr[j] &gt; arr[j + 1]) &#123;</span><br><span class="line">					temp = arr[j];</span><br><span class="line">					arr[j] = arr[j + 1];</span><br><span class="line">					arr[j + 1] = temp;</span><br><span class="line">				&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		int[] number = &#123;95,45,15,78,84,51,24,12&#125;;</span><br><span class="line">		int temp = 0;</span><br><span class="line">		bubble_sort(number);</span><br><span class="line">		for(int i = 0; i &lt; number.length; i++) </span><br><span class="line">			System.out.print(number[i] + &quot; &quot;);</span><br><span class="line">		System.out.println();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -442,6 +437,10 @@ Java1234567891011public static void inserti">
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2016/09/30/hadoop-4-mahout/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -512,7 +511,7 @@ Java1234567891011public static void inserti">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -520,7 +519,7 @@ Java1234567891011public static void inserti">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -529,7 +528,7 @@ Java1234567891011public static void inserti">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

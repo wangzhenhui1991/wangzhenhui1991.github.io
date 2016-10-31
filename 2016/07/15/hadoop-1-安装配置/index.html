@@ -98,7 +98,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
 sshd守护进程
 
 Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理器。s">
-<meta property="og:updated_time" content="2016-08-31T13:24:07.618Z">
+<meta property="og:updated_time" content="2016-09-19T13:38:15.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hadoop在opensuse13.2下安装配置">
 <meta name="twitter:description" content="Hadoop 2.7.2
@@ -365,7 +365,8 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
 <p><code>cd ~/.ssh/            #切换到本机密钥文件夹中</code><br><code>ssh-keygen -t rsa        #生成本机密钥</code><br><code>cat ./id_rsa.pub &gt;&gt; ./authorized_keys    #将本机的密钥加入到授权文件中</code></p>
 <h3 id="1-2-java环境"><a href="#1-2-java环境" class="headerlink" title="1.2 java环境"></a>1.2 java环境</h3><p>因为本机之前安装过java，这里 如果忘记的安装路径的话，通过以下几个命令查看jdk安装信息</p>
 <p><code>java -version</code><br><code>whereis java</code><br><code>which java   #java 执行路径</code><br><code>echo $JAVA_HOME</code><br><code>echo $PATH</code></p>
-<p>后来发现openSUSE13.2预装的是jre，并没有jdk，所以还得重新安装一下jdk。</p>
+<p>后来发现openSUSE13.2预装的是jre，并没有jdk，所以还得重新安装一下jdk。<br><code>vim /etc/profile.local</code></p>
+<p><code>export JAVA_HOME=/usr/java/jdk1.6.0_45</code><br><code>export PATH=$JAVA_HOME/bin:$PATH</code><br><code>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</code></p>
 <h2 id="2-Hadoop安装配置"><a href="#2-Hadoop安装配置" class="headerlink" title="2.Hadoop安装配置"></a>2.Hadoop安装配置</h2><p>可以参考<a href="http://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html" target="_blank" rel="external">hadoop安装官方教程</a></p>
 <h3 id="2-1-下载hadoop-2-7-2-tar-gz"><a href="#2-1-下载hadoop-2-7-2-tar-gz" class="headerlink" title="2.1 下载hadoop-2.7.2.tar.gz"></a>2.1 <strong>下载hadoop-2.7.2.tar.gz</strong></h3><p>解压到目录</p>
 <p>   <code>tar -zxf hadoop-2.7.2.tar.gz      #本例放到了/home/wzh/hadoop下</code></p>
@@ -373,7 +374,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
 <p>   <code>export JAVA_HOME=/usr/lib64/jvm/jre    #你的java_home路径，可以通过前面的命令查看</code></p>
 <h3 id="2-2-配置hadoop到path中"><a href="#2-2-配置hadoop到path中" class="headerlink" title="2.2 配置hadoop到path中"></a>2.2 <strong>配置hadoop到path中</strong></h3><p>按说解压出来之后，通过./bin/hadoop就可以使用hadoop命令了，但是这样每次都要带上前面的路径，很麻烦。所以将hadoop配置到path中。</p>
 <ul>
-<li><p><strong>非opensuse的配置方式</strong>是在/etc/profile最后面加上<br>  <code>#config hadoop</code><br>　　<code>export HADOOP_HOME=/usr/hadoop            #你自己hadoop的目录</code><br>　　<code>export PATH=$HADOOP_HOME/bin:$PATH</code><br>　　<code>export HADOOP_LOG_DIR=${HADOOP_HOME}/logs</code></p>
+<li><p><strong>非opensuse的配置方式</strong>是在/etc/profile最后面加上<br>  <code>#config hadoop</code><br>　　<code>export HADOOP_HOME=/usr/hadoop            #你自己hadoop的目录</code><br>　　<code>export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH</code><br>　　<code>export HADOOP_LOG_DIR=${HADOOP_HOME}/logs</code></p>
 </li>
 <li><p><strong>opensuse的配置方式</strong>，opensuse的/etc/profile 文件在开头就说了，不建议用户修改profile文件，需要新建一个profile.local文件，里面用来专门配置用户自己的path：<br>  <code>cd /etc</code><br>  <code>vi profile.local</code></p>
 </li>
@@ -437,8 +438,8 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/02/fcm算法/" rel="next" title="fcm算法">
-                <i class="fa fa-chevron-left"></i> fcm算法
+              <a href="/2016/06/02/栈和队列(1)/" rel="next" title="栈和队列（一）">
+                <i class="fa fa-chevron-left"></i> 栈和队列（一）
               </a>
             
           </div>
@@ -519,7 +520,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">17</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -527,7 +528,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -536,7 +537,7 @@ Systemctl是一个Systemd工具，主要负责控制systemd系统和服务管理
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
