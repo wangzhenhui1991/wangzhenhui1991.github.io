@@ -276,8 +276,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/07/17/java-HashMap工作原理/" itemprop="url">
-                  java-HashMap工作原理
+                <a class="post-title-link" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="url">
+                  如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？
                 </a>
               
             
@@ -304,20 +304,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/java/集合/" itemprop="url" rel="index">
-                    <span itemprop="name">集合</span>
+                  <a href="/categories/hadoop/" itemprop="url" rel="index">
+                    <span itemprop="name">hadoop</span>
                   </a>
                 </span>
 
@@ -332,8 +320,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/17/java-HashMap工作原理/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/java-HashMap工作原理/" itemprop="commentsCount"></span>
+                <a href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -357,13 +345,12 @@
 
       
         
-          <p>[TOC]</p>
-<h2 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">当我们执行下面的操作时：</span><br><span class="line">HashMap&lt;String, Integer&gt; map = <span class="keyword">new</span> HashMap&lt;String, Integer&gt;();</span><br><span class="line">map.put(<span class="string">"语文"</span>, <span class="number">1</span>);</span><br><span class="line">map.put(<span class="string">"数学"</span>, <span class="number">2</span>);</span><br><span class="line">map.put(<span class="string">"英语"</span>, <span class="number">3</span>);</span><br><span class="line">map.put(<span class="string">"历史"</span>, <span class="number">4</span>);</span><br><span class="line">map.put(<span class="string">"政治"</span>, <span class="number">5</span>);</span><br><span class="line">map.put(<span class="string">"地理"</span>, <span class="number">6</span>);</span><br><span class="line">map.put(<span class="string">"生物"</span>, <span class="number">7</span>);</span><br><span class="line">map.put(<span class="string">"化学"</span>, <span class="number">8</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;String, Integer&gt; entry : map.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行结果是<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">政治: 5</span><br><span class="line">生物: 7</span><br><span class="line">历史: 4</span><br><span class="line">数学: 2</span><br><span class="line">化学: 8</span><br><span class="line">语文: 1</span><br><span class="line">英语: 3</span><br><span class="line">地理: 6</span><br></pre></td></tr></table></figure></p>
-<p>发生了什么呢？下面是一个大致的结构，希望我们对HashMap的结构有一个感性的认识：<br><img src="http://img.i.liebao.cn/assets/images/76fc8c3555425f3598edab25129270d6.png" alt=""></p>
-<p>####　HashMap官方描述的几个关键点：<br>1.基于Map接口实现：<br>2.允许null键/值：对比hashtable不能为null<br>3.非同步：对比hashtable是同步，线程之间可以共享hashtable<br>4.不保证有序(比如插入的顺序)、也不保证序不随时间变化<br>
+          <p>大数据本身是个很宽泛的概念，<strong>Hadoop生态圈</strong>（或者泛生态圈）基本上都是为了处理超过单机尺度的数据处理而诞生的。你可以把它比作一个厨房所以需要的各种工具。锅碗瓢盆，各有各的用处，互相之间又有重合。你可以用汤锅直接当碗吃饭喝汤，你可以用小刀或者刨子去皮。但是每个工具有自己的特性，虽然奇怪的组合也能工作，但是未必是最佳选择。</p>
+<p>大数据，首先你要能存的下大数据。<br>传统的文件系统是单机的，不能横跨不同的机器。<strong>HDFS（Hadoop Distributed FileSystem）</strong>的设计本质上是为了大量的数据能横跨成百上千台机器，但是你看到的是一个文件系统而不是很多文件系统。比如你说我要获取/hdfs/tmp/file1的数据，你引用的是一个文件路径，但是实际的数据存放在很多不同的机器上。你作为用户，不需要知道这些，就好比在单机上你不关心文件分散在什么磁道什么扇区一样。HDFS为你管理这些数据。</p>
+<hr>
+<p><strong>存的下数据之后，你就开始考虑怎么处理数据。</strong><br>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/17/java-HashMap工作原理/#more" rel="contents">
+            <a class="btn" href="/2016/07/17/hadoop-2-如何用形象的比喻描述大数据的技术生态？Hadoop、Hive、Spark 之间是什么关系？/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -813,8 +800,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/栈和队列(1)/" itemprop="url">
-                  栈和队列（一）
+                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
+                  JVM内存区域与内存溢出异常
                 </a>
               
             
@@ -841,8 +828,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构和算法/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构和算法</span>
+                  <a href="/categories/JVM/" itemprop="url" rel="index">
+                    <span itemprop="name">JVM</span>
                   </a>
                 </span>
 
@@ -853,8 +840,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/数据结构和算法/栈和队列/" itemprop="url" rel="index">
-                    <span itemprop="name">栈和队列</span>
+                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
+                    <span itemprop="name">自动内存管理机制</span>
                   </a>
                 </span>
 
@@ -869,8 +856,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/02/栈和队列(1)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/栈和队列(1)/" itemprop="commentsCount"></span>
+                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -895,11 +882,8 @@
       
         
           
-            <h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h3 id="设计一个有getMin功能的栈"><a href="#设计一个有getMin功能的栈" class="headerlink" title="设计一个有getMin功能的栈"></a>设计一个有getMin功能的栈</h3><p>描述：实现一个特殊的栈，在实现栈的基本功能上，再实现返回栈中最小元素的操作。<br>要求：</p>
-<pre><code>1. pop，push，getMin的时间复杂度都是O(1)
-2. 设计的栈类型可以使用线程的栈结构
-</code></pre><p>难度：☆</p>
-
+            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
+<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
           
         
       
@@ -1051,8 +1035,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="url">
-                  JVM内存区域与内存溢出异常
+                <a class="post-title-link" href="/2016/06/02/栈和队列(1)/" itemprop="url">
+                  栈和队列（一）
                 </a>
               
             
@@ -1079,8 +1063,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/" itemprop="url" rel="index">
-                    <span itemprop="name">JVM</span>
+                  <a href="/categories/数据结构和算法/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构和算法</span>
                   </a>
                 </span>
 
@@ -1091,8 +1075,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/JVM/自动内存管理机制/" itemprop="url" rel="index">
-                    <span itemprop="name">自动内存管理机制</span>
+                  <a href="/categories/数据结构和算法/栈和队列/" itemprop="url" rel="index">
+                    <span itemprop="name">栈和队列</span>
                   </a>
                 </span>
 
@@ -1107,8 +1091,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/02/java虚拟机-1-内存区域与内存溢出异常/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/java虚拟机-1-内存区域与内存溢出异常/" itemprop="commentsCount"></span>
+                <a href="/2016/06/02/栈和队列(1)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/02/栈和队列(1)/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -1133,8 +1117,11 @@
       
         
           
-            <h2 id="java内存区域与内存溢出异常"><a href="#java内存区域与内存溢出异常" class="headerlink" title="java内存区域与内存溢出异常"></a>java内存区域与内存溢出异常</h2><h3 id="运行时数据区域"><a href="#运行时数据区域" class="headerlink" title="运行时数据区域"></a>运行时数据区域</h3><h3 id="1-程序计数器"><a href="#1-程序计数器" class="headerlink" title="1. 程序计数器"></a>1. 程序计数器</h3><h3 id="2-java虚拟机栈"><a href="#2-java虚拟机栈" class="headerlink" title="2. java虚拟机栈"></a>2. java虚拟机栈</h3><h3 id="3-本地方法栈"><a href="#3-本地方法栈" class="headerlink" title="3. 本地方法栈"></a>3. 本地方法栈</h3><h3 id="4-java堆"><a href="#4-java堆" class="headerlink" title="4. java堆"></a>4. java堆</h3><h3 id="5-方法区"><a href="#5-方法区" class="headerlink" title="5. 方法区"></a>5. 方法区</h3><h3 id="6-直接内存"><a href="#6-直接内存" class="headerlink" title="6. 直接内存"></a>6. 直接内存</h3><h3 id="JVM-HotSpot-对象创建过程"><a href="#JVM-HotSpot-对象创建过程" class="headerlink" title="JVM(HotSpot)对象创建过程"></a>JVM(HotSpot)对象创建过程</h3><p>###　1. 对象的创建</p>
-<h4 id="new"><a href="#new" class="headerlink" title="new"></a>new</h4><h4 id="init"><a href="#init" class="headerlink" title="init"></a>init</h4><h3 id="2-对象的内存分布"><a href="#2-对象的内存分布" class="headerlink" title="2. 对象的内存分布"></a>2. 对象的内存分布</h3><h4 id="对象头Header"><a href="#对象头Header" class="headerlink" title="对象头Header"></a>对象头Header</h4><h4 id="1-Mark-Word"><a href="#1-Mark-Word" class="headerlink" title="1. Mark Word"></a>1. Mark Word</h4><h4 id="2-类型指针"><a href="#2-类型指针" class="headerlink" title="2. 类型指针"></a>2. 类型指针</h4><h4 id="实例数据Instance-Data"><a href="#实例数据Instance-Data" class="headerlink" title="实例数据Instance Data"></a>实例数据Instance Data</h4><h4 id="对齐填充Padding"><a href="#对齐填充Padding" class="headerlink" title="对齐填充Padding"></a>对齐填充Padding</h4><h3 id="3-对象的访问定位"><a href="#3-对象的访问定位" class="headerlink" title="3. 对象的访问定位"></a>3. 对象的访问定位</h3>
+            <h2 id="栈和队列"><a href="#栈和队列" class="headerlink" title="栈和队列"></a>栈和队列</h2><h3 id="设计一个有getMin功能的栈"><a href="#设计一个有getMin功能的栈" class="headerlink" title="设计一个有getMin功能的栈"></a>设计一个有getMin功能的栈</h3><p>描述：实现一个特殊的栈，在实现栈的基本功能上，再实现返回栈中最小元素的操作。<br>要求：</p>
+<pre><code>1. pop，push，getMin的时间复杂度都是O(1)
+2. 设计的栈类型可以使用线程的栈结构
+</code></pre><p>难度：☆</p>
+
           
         
       
